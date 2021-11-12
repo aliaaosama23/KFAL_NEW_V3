@@ -1,0 +1,90 @@
+<ion-content style="background-color: #F2F2F2;padding-bottom: 0px !important;" >
+  <ion-row (click)="changeLanguage()">
+    <ion-col col-2 style="text-align: center;">
+      <ion-icon name="md-globe" style="display: inline-block;font-size: 2.4em;color: #455a64;"></ion-icon>
+    </ion-col>
+    <ion-col col-10></ion-col>
+  </ion-row>
+
+  <div style="text-align: center;margin-top: 4%;" >
+     <img  src="../../assets/imgs/Artboard 27.png">
+  </div>
+
+  <div style="background-color: white;margin: 30.75px 20px 0;">
+    <form  [formGroup]="myform" style="padding: 12px 10px;">
+      <div>
+        <ion-row>
+          <ion-col col-12>
+              <ion-label style="color:#000;" >{{"Email"|translate}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-input [value]="myemail"  formControlName="UserEmail" type="email" ></ion-input>
+          </ion-item>
+        </ion-row>
+        <div style="font-family: 'roboto'; color:red;text-align:center;margin: 9px;" *ngIf="!myform.get('UserEmail').valid && myform.get('UserEmail').touched">
+          {{ "enter your Email"|translate}}
+        </div>
+      </div>
+
+      <div style="position: relative;margin-bottom: 10px;">
+        <ion-row>
+          <ion-col col-12>
+              <ion-label style="color:#000;" >{{"password"|translate}}</ion-label>
+          </ion-col>
+        </ion-row>
+
+        <ion-item style="position:relative">
+          <ion-input style="border-bottom: none !important;" [value]="mypassword"  formControlName="Password" [type]="passwordType" clearOnEdit="false" ></ion-input>
+          <ion-icon *ngIf=" IsRTl==false" style="position: absolute;top:0px;right:10px;font-size: 2rem !important;margin: 0 auto !important;" item-end [name]="passwordIcon"  (click)="hideShowPassword()"></ion-icon>
+          <ion-icon *ngIf=" IsRTl==true" style="position: absolute;top:0px;left:10px;font-size: 2rem !important;margin: 0 auto !important;" item-end [name]="passwordIcon"  (click)="hideShowPassword()"></ion-icon>
+     
+        </ion-item>
+
+        <div style="font-family: 'roboto'; color:red;text-align:center;margin-bottom: 14px;" *ngIf="!myform.get('Password').valid && myform.get('Password').touched">
+          {{ "enter your password"|translate}}
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <ion-row style="margin-top: -30px;">
+    <ion-col col-2> </ion-col>
+    <ion-col col-8>
+      <button [disabled]="!myform.valid" ion-button color="custom2" full style="border-radius: 25px;" (click)="Login()">
+         <span style="color:white;font-size: 18px">{{"login"|translate}}</span>
+      </button>
+    </ion-col>
+    <ion-col col-2> </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col col-8 (click)="forgetpassword()" style="text-align: center; height: 13px;width: 118px;color: #214952;font-size: 12px;line-height: 13px;">
+      <span>   {{"forget_password"|translate}}</span>
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top: 13px;">
+    <ion-col col-2></ion-col>
+    <ion-col col-8 (click)="register()" style="text-align: center;height: 15px;width: 80px;color: #214952;font-size: 17px;font-weight: 600;line-height: 15px;">
+     <span> {{"new_user"|translate}} </span>
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="touchID">
+    <ion-col col-6 >
+      <p style="text-align: center;font-size: 18px;white-space: nowrap;"> {{"login with fingerprint"|translate}} </p>
+    </ion-col>
+    <ion-col col-6 style="text-align: center;margin-top: 5%;" (click)="loginwithtouchid()">
+      <ion-icon name="md-finger-print" style="font-size: 35px;"></ion-icon>
+    </ion-col>
+  </ion-row>
+
+
+  <!-- md-finger-print -->
+
+</ion-content>

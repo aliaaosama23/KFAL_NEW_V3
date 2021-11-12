@@ -1,0 +1,76 @@
+  <div style="background-color: #F2F2F2;height: 110px;">
+      <ion-row style="padding-top: 13px;padding-right: 11px;margin: 0 16px;" *ngIf="UserType=='client'">
+        <ion-col col-1 (click)="dismiss()">
+            <ion-icon *ngIf="dir==true"  style="font-size: 40px;" name="ios-arrow-round-forward-outline"></ion-icon>
+            <ion-icon *ngIf="dir==false"  style="font-size: 40px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-10 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+           {{RequestData.RequestCode}}
+        </ion-col>
+        <ion-col col-1 *ngIf="dir==true && RequestData.FK_Request_Status_ID==1" (click)="edit()" style="padding-top: 14px;transform: rotate(90deg);" >
+          <img src="../../assets/imgs/edit.png" >
+        </ion-col>
+        <ion-col col-1 *ngIf="dir==false && RequestData.FK_Request_Status_ID==1" (click)="edit()" style="padding-top: 14px;" >
+          <img src="../../assets/imgs/edit.png" >
+        </ion-col>
+        <ion-col col-1 *ngIf="RequestData.FK_Request_Status_ID!=1">
+
+        </ion-col>
+        
+      </ion-row>
+
+      <ion-row style="padding-top: 13px;padding-right: 11px;margin: 0 16px;" *ngIf="UserType=='admin'">
+        <!-- admin -->
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 40px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 40px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-9 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{RequestData.RequestCode}}
+        </ion-col>
+        <ion-col col-2  *ngIf="RequestData.FK_Request_Status_ID==1 || RequestData.FK_Request_Status_ID==3" style="margin-top: 9px;text-align: center;"(click)="open_client_profile()">
+          <span *ngIf="dir==true"  style="color:#FFAA45;background-color:#07133c;border-radius: 50%;padding:  6% 18%;text-transform: capitalize;">
+           {{UserName}}
+          </span>
+          <span *ngIf="dir==false"  style="color:#FFAA45;background-color:#07133c;border-radius: 50%;padding:  6% 10%;text-transform: capitalize;">
+            {{UserName}}
+          </span>
+        </ion-col>
+        <ion-col col-2  *ngIf="!(RequestData.FK_Request_Status_ID==1 || RequestData.FK_Request_Status_ID==3)  " style="text-align: center;" (click)="chooseAccount($event)">
+          <div  *ngIf="dir==true" style="color:#FFAA45;background-color:#07133c;border-radius: 50%;padding: 10% 10%;">
+            <ion-icon   style="font-size: 26px;" name="ios-person-outline"></ion-icon>
+          </div>
+          <div  *ngIf="dir==false"  style="color:#FFAA45;background-color:#07133c;border-radius: 50%;padding: 10% 10%;">
+            <ion-icon   style="font-size: 26px;" name="ios-person-outline"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+  </div>
+  
+  <div style="margin-top: -28px;margin-left: 14px; margin-right: 14px;">
+    <ion-row style="background-color: #f2f2f2;border-radius: 0px 0px 40px 41px;">
+      <ion-col col-1></ion-col>
+      <ion-col col-4 style="text-align: center;">
+         <div>
+           <p style="margin: 0px;">
+              <span style="font-size: 21px;"> {{langFrom}}</span>
+           </p>
+         </div>
+      </ion-col>
+      <ion-col col-2 *ngIf="!dir" style="text-align: center;">
+         <ion-icon style="color:#FFAA45;font-size: 31px;padding: 5px 1px;" name="ios-arrow-round-forward-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-2 *ngIf="dir" style="text-align: center;">
+        <ion-icon style="color:#FFAA45;font-size: 31px;padding: 5px 1px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-4 style="    text-align: center;font-size: 15px;">
+          <div >
+            <p style="margin: 0px;">
+               <span style="font-size: 21px;">{{ langTo}}</span>
+            </p>
+          </div>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+  </div>
+

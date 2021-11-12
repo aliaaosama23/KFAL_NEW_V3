@@ -1,0 +1,35 @@
+<ion-header>
+    <div style="background-color: #F2F2F2;height: 110px;">
+        <ion-row style="padding-top: 13px;padding-right: 11px;">
+          <ion-col col-1 (click)="dismiss()">
+              <ion-icon style="    font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          </ion-col>
+          <ion-col col-11 style="text-align: center;color: #214952;font-size: 15.61px;    margin-top: 2px;">
+            {{"payment_method"|translate}}
+          </ion-col>
+        </ion-row>
+    </div>
+    <div style="margin-top: -14px;margin-left: 30px; margin-right: 30px;">
+        <ion-row style="    background-color: #f2f2f2;border-radius: 0px 0px 40px 41px;height: 38px;">
+        </ion-row>
+    </div>
+    
+</ion-header>
+
+<ion-content padding>
+    <ion-list no-lines mode="ios"> 
+        <button ion-item  (click)="itemSelected('Paypal')" style="    direction: ltr;">
+             Paypal
+        </button> 
+        <button ion-item  (click)="itemSelected('Credit Card')" style="    direction: ltr;">
+            Credit Card
+        </button> 
+        <button ion-item  (click)="itemSelected('Visa')" style="    direction: ltr;">
+         Visa
+        </button> 
+        <button ion-item  (click)="itemSelected('Master Card')" style="    direction: ltr;">
+         Master Card
+        </button> 
+       
+    </ion-list>
+</ion-content>

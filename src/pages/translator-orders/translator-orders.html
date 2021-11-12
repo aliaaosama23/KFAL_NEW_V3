@@ -1,0 +1,43 @@
+<ion-header >
+    <div>
+        <ion-row style="padding-top: 13px;padding-right: 11px;">
+            <ion-col col-1 (click)="dismiss()">
+              <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+              <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+     
+              </ion-col>
+          <ion-col col-11 style="margin-top: 10px; text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+            {{"orders"|translate}} {{OrdersType|translate}}
+          </ion-col>
+        </ion-row>
+    </div>
+  </ion-header>
+  <ion-content padding>
+        <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher> -->
+        <div> 
+          <div *ngIf="Orders.length==0" style="margin-top: 30%;text-align: center;font-size: 23px; color:#3B5E66 ">
+              {{"no exist requests"|translate}}
+          </div>
+          <ion-row *ngFor="let request of Orders" (click)="OrderDetails(request.Request_ID,'new')" style="margin-bottom: 6px;background-color: #F2F2F2;padding: 6px;border-radius: 5px;">
+              <ion-col col-2 style="background-color: #214952;color: #FFAA45;white-space: normal;border-radius: 5px;font-size: 15px;text-align: center;"> 
+                <div style="margin-bottom: 0px;">  {{request.day}}  </div>
+                <div>  {{request.month}} </div>
+              </ion-col>
+              <ion-col col-7> 
+                <div style="padding: 0px 13px; margin-bottom: 12px;color: #3B5E66;font-size: 16px;line-height: 15px;">
+                    {{request.Request_Orginal_File}}
+                </div>
+                  <div style="padding: 0px 13px;color: #3B5E66;font-size: 14x;line-height: 15px;">
+                  {{request.FK_Request_Deadline_Hours}} {{"hour"|translate}}
+                </div>
+              </ion-col>
+              <ion-col col-1></ion-col>
+              <ion-col col-1 style="white-space: nowrap;">  {{request.RequestCode}} </ion-col>
+          </ion-row>
+
+
+        </div>
+  </ion-content>
+  

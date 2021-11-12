@@ -1,0 +1,93 @@
+
+<ion-header>
+  <request-header (ChooseAccount)="chooseAccount()"  (OpenClientProfile)="open_client_profile()" [UserName]='user' UserType="admin"  [RequestData]="request_data"  [langFrom]="langFrom"  [langTo]="langTo">
+  </request-header>
+</ion-header>
+ 
+  <ion-content padding>
+ 
+   <div  *ngIf="request_data.FK_Request_Status_ID==1" style="font-size: 14px ;color: red;text-align: center;" >
+      <p> {{'waiting for admin accept'|translate}}</p>
+    </div>
+
+    <div  *ngIf="request_data.FK_Request_Status_ID==3" style="font-size: 14px ;color: red;text-align: center;" >
+      <p> {{'waiting for a translator'|translate}}</p>
+    </div>
+
+    <div  *ngIf="request_data.FK_Request_Status_ID==4" style="font-size: 14px ;color: red;text-align: center;" >
+      <p> {{'request canceled'|translate}}</p>
+    </div>
+
+    <div  *ngIf="request_data.FK_Request_Status_ID==11" style="font-size: 14px ;color: red;text-align: center;" >
+      <p> {{'translator apology for that'|translate}}</p>
+    </div>
+
+    <div  *ngIf="request_data.FK_Request_Status_ID==12" style="font-size: 14px ;color: red;text-align: center;" >
+      <p> {{'request rollback from client'|translate}}</p>
+    </div>
+
+    <div  *ngIf="request_data.FK_Request_Status_ID==14" style="font-size: 14px ;color: red;text-align: center;" >
+      <p> {{'Request refused by admin'|translate}}</p>
+    </div>
+
+    <ion-row *ngIf="request_data.FK_Request_Status_ID==5 || request_data.FK_Request_Status_ID==6 || request_data.FK_Request_Status_ID==7 || request_data.FK_Request_Status_ID==8">
+      <ion-col col-2 style="text-align: center;" >
+         <span *ngIf="request_data.FK_Request_Status_ID==5 || request_data.FK_Request_Status_ID==6 " style="height: 17px;width: 17px;background-color: #FFAA45;border-radius: 50%;display: inline-block;"></span>
+         <span *ngIf="request_data.FK_Request_Status_ID==7 || request_data.FK_Request_Status_ID==8 " style="height: 17px;width: 17px;background-color: gray;border-radius: 50%;display: inline-block;"></span>
+         <h2 style="font-size: 12px;white-space: nowrap;"> {{'translation'|translate}}</h2>
+      </ion-col>
+      <ion-col col-8 style="padding-top: 4%;">
+         <div style="border:2px solid gray"></div>
+      </ion-col>
+      <ion-col col-2 style="text-align: center;" >
+        <span *ngIf="request_data.FK_Request_Status_ID==7 || request_data.FK_Request_Status_ID==8 " style="height: 17px;width: 17px;background-color: #FFAA45;border-radius: 50%;display: inline-block;"></span>
+        <span *ngIf="request_data.FK_Request_Status_ID==5 || request_data.FK_Request_Status_ID==6 " style="height: 17px;width: 17px;background-color: gray;border-radius: 50%;display: inline-block;"></span>
+        <h2  style="font-size: 12px;white-space: nowrap;">{{'review'|translate}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="request_data.FK_Request_Status_ID==11">
+      <ion-col col-2 style="text-align: center;" >
+         <span style="height: 17px;width: 17px;background-color: red;border-radius: 50%;display: inline-block;"></span>
+         <h2 style="font-size: 12px;;white-space: nowrap;"> {{'translation'|translate}}</h2>
+      </ion-col>
+      <ion-col col-8 style="padding-top: 4%;">
+         <div style="border:2px solid gray"></div>
+      </ion-col>
+      <ion-col col-2 style="text-align: center;" >
+        <span  style="height: 17px;width: 17px;background-color: gray;border-radius: 50%;display: inline-block;"></span>
+        <h2  style="font-size: 12px;;white-space: nowrap;">{{'review'|translate}}</h2>
+      </ion-col>
+    </ion-row>
+
+      <request-details [RequestData]="request_data" [GeneralFeild]="general_feild" [SpecificFeild]="specific_feild" [FileLevel]="file_level"></request-details>
+
+      <ion-row *ngIf="request_data.FK_Request_Status_ID==1">
+        <ion-col col-6>
+          <button  (click)="accept()" ion-button full color="custom4" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+            <span> {{   "accept"|translate}} </span>
+          </button>
+        </ion-col>
+
+        <ion-col col-6>
+          <button  (click)="refuse()" ion-button full color="custom5" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+            <span> {{  "refuse"|translate}} </span>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="complete" style="margin-bottom: 10px;">
+        <div style=" margin-bottom: 5px;   margin-top: 5px;background-color: #f2f2f2;border-radius: 10px;height: auto;width: 100%;padding: 10px;">
+          <p *ngIf="dir==true" style="margin-top: 0px;margin-bottom: 0px;color: #214952;font-size: 15px;text-align: right;">  {{ "request rate"|translate}}</p>
+          <p *ngIf="dir==false" style="margin-top: 0px;margin-bottom: 0px;color: #214952;font-size: 15px;text-align:left;">  {{ "request rate"|translate}}</p>
+          <div style="text-align: center;">
+            <ionic3-star-rating   activeIcon = "ios-star" defaultIcon = "ios-star-outline" activeColor = "#e0ce47" defaultColor = "#f3d819" readonly="true" [(ngModel)]="rate"></ionic3-star-rating>
+          </div>
+          <p *ngIf="dir==true" style="margin-top: 0px;margin-bottom: 0px;color: #214952;font-size: 15px;text-align: right;">  {{ "request comment"|translate}}</p>
+          <p *ngIf="dir==false" style="margin-top: 0px;margin-bottom: 0px;color: #214952;font-size: 15px;text-align:left;">  {{ "request comment"|translate}}</p>
+          <div style="text-align: center;">
+            <p style="margin:0px">{{comment}}</p>
+          </div>
+        </div>
+      </ion-row>
+</ion-content> 

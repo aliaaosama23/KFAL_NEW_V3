@@ -1,0 +1,41 @@
+page-add-test-form {
+  .fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+
+.select-md {
+  padding: 0px ;
+}
+
+.item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+  color: #000;
+}
+
+.item-md.item-block .item-inner{
+  padding-right: 0px !important;
+}
+
+
+.item-ios.item-block .item-inner{
+  padding-right: 0px !important;
+}
+
+.item > ion-icon, .item-inner > ion-icon {
+  min-height: 2.8rem;
+  font-size: 1.8rem !important;
+  line-height: 1;
+}
+}

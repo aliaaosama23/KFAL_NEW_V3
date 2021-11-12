@@ -1,0 +1,17 @@
+<ion-content style="padding: 5px;">
+   <h2 (click)="userprofile()" style="font-size: 18px;text-align: center;" >{{ "userProfile"|translate}}</h2>
+   <div *ngIf="TranslatorID!=null">
+    <div style="height: 4px;border-bottom: 1px solid #aba3a3;"></div>
+    <h2  (click)="providerprofile(TranslatorID)" style="font-size: 18px;text-align: center;">
+     {{ "translatorProfile"|translate}}
+    </h2>
+   </div>
+
+   <div  *ngIf="ReviewerID!=null">
+    <div style="height: 4px;border-bottom: 1px solid #aba3a3;"></div>
+    <h2 (click)="providerprofile(ReviewerID)" style="font-size: 18px;text-align: center;">
+     {{ "reviewerProfile"|translate}}
+    </h2>
+   </div>
+
+</ion-content>

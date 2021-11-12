@@ -1,0 +1,159 @@
+<ion-menu [content]="content" type="overlay" side="right" >
+    <!-- style="background-color: #214952;"  [side]="direction==true ? 'right' :'left'" -->
+<ion-header>
+  <ion-row style="margin-top: 11%;margin-left: 12%;">
+    <ion-col col-10></ion-col>
+    <ion-col col-1 (click)="closeMenu()">
+       <ion-icon  style="color:white;    font-size: 35px" name="md-close"></ion-icon>
+    </ion-col>
+    <ion-col col-1></ion-col>
+  </ion-row>
+</ion-header>
+  <ion-content  style="background-color: #214952;">
+
+  <button menuClose ion-item  style="background-color: #214952; " (click)=" Home()">
+      <ion-row >
+        <ion-col col-2 style="text-align: center;margin-top: 2px;">
+            <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-home-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-6 style="margin-top: 11px;">
+            <span style="color:white;font-size: 18px;">  {{"Menu.home"|translate}}</span>
+        </ion-col>
+        <ion-col col-4></ion-col>
+      </ion-row>
+    </button>
+    
+  <button menuClose ion-item  style="background-color: #214952; " (click)="openPage('ClientProfilePage')">
+        <ion-row >
+          <ion-col col-2 style="text-align: center;margin-top: 2px;">
+             
+              <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-person-outline"></ion-icon>
+          </ion-col>
+          <ion-col col-6 style="margin-top: 11px;">
+              <span style="color:white;font-size: 18px;">  {{"Menu.profile"|translate}}</span>
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+    </button>
+
+    <!-- <button menuClose ion-item  style="background-color: #214952; " (click)="Orders()">
+        <ion-row >
+          <ion-col col-2 style="text-align: center;margin-top: 2px;">
+              <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-list-outline"></ion-icon>
+          </ion-col>
+          <ion-col col-6 style="margin-top: 11px;">
+              <span style="color:white;font-size: 18px;">  {{"Menu.requests"|translate}}</span>
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+    </button> -->
+
+    <!-- <button menuClose ion-item  style="background-color: #214952; " (click)="openPage('NotificationsPage')">
+        <ion-row >
+          <ion-col col-2 style="text-align: center;margin-top: 2px;">
+              <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-notifications-outline"></ion-icon>
+          </ion-col>
+          <ion-col col-6 style="margin-top: 11px;">
+              <span style="color:white;font-size: 18px;">  {{"Menu.notifications"|translate}}</span>
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+    </button>   -->
+
+    <button menuClose ion-item  style="background-color: #214952; margin: 15px 0px ; " (click)="openPage('WalletPage')">
+        <ion-row >
+          <ion-col col-2 style="text-align: center;margin-top: 2px;">
+              <!-- <img style="padding-top: 9px;" src="../assets/imgs/wallet.png"> -->
+              <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-cash-outline"></ion-icon>
+
+          </ion-col>
+          <ion-col col-6 style="margin-top: 11px;">
+              <span style="color:white;font-size: 18px;">  {{"Menu.wallet"|translate}}</span>
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+    </button>
+    
+    <button menuClose ion-item  style="background-color: #214952; margin: 15px 0px ; " (click)="openPage('DiscussionsPage')">
+        <ion-row >
+          <ion-col col-2 style="text-align: center;margin-top: 2px;">
+              <!-- <img style="padding-top: 9px;" src="../assets/imgs/wallet.png"> -->
+              <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-chatbubbles-outline"></ion-icon>
+          </ion-col>
+          <ion-col col-6 style="margin-top: 11px;">
+              <span style="color:white;font-size: 18px;">  {{"Menu.discussions"|translate}}</span>
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+    </button>
+
+    <button menuClose ion-item  style="background-color: #214952; margin: 15px 0px ; " (click)="openPage('HelpPage')">
+      <ion-row >
+        <ion-col col-2 style="text-align: center;margin-top: 2px;">
+            <!-- <img style="padding-top: 9px;" src="../assets/imgs/help.png">  -->
+
+            <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-help-outline"></ion-icon>
+
+        </ion-col>
+        <ion-col col-6 style="margin-top: 11px;">
+            <span style="color:white;font-size: 18px;">  {{"Menu.help"|translate}}</span>
+        </ion-col>
+        <ion-col col-4></ion-col>
+      </ion-row>
+    </button>
+
+    <button menuClose ion-item  style="background-color: #214952; margin: 15px 0px ; " (click)="openPage('SettingsPage')">
+      <ion-row >
+        <ion-col col-2 style="text-align: center;margin-top: 2px;">
+            <!-- <img style="padding-top: 9px;" src="../assets/imgs/settings.png">  -->
+            <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-settings-outline"></ion-icon>
+
+        </ion-col>
+        <ion-col col-6 style="margin-top: 11px;">
+            <span style="color:white;font-size: 18px;">  {{"Menu.settings"|translate}}</span>
+        </ion-col>
+        <ion-col col-4></ion-col>
+      </ion-row>
+    </button>
+
+    <button menuClose ion-item  style="background-color: #214952;  margin: 15px 0px ;" (click)="sendInvitaion()">
+      <ion-row >
+        <ion-col col-2 style="text-align: center;margin-top: 2px;">
+            <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-contacts-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-6 style="margin-top: 11px;">
+            <span style="color:white;font-size: 18px;">  {{"Menu.sendInvitaion"|translate}}</span>
+        </ion-col>
+        <ion-col col-4></ion-col>
+      </ion-row>
+    </button>
+
+    <button menuClose ion-item  style="background-color: #214952; margin: 15px 0px ; " (click)="logout()">
+      <ion-row >
+        <ion-col col-2 style="text-align: center;margin-top: 2px;">
+            <ion-icon style="color: white;font-size: 21px;padding-top: 10px;" name="ios-log-out-outline"></ion-icon>
+
+        </ion-col>
+        <ion-col col-6 style="margin-top: 11px;">
+            <span style="color:white;font-size: 18px;">  {{"Menu.Logout"|translate}}</span>
+        </ion-col>
+        <ion-col col-4></ion-col>
+      </ion-row>
+    </button>
+
+  </ion-content>
+
+</ion-menu>
+<!-- <ion-fab bottom right >
+  <button ion-fab>
+    <ion-icon name="home"></ion-icon>
+  </button>
+  <ion-fab-list side="left">
+    <button ion-fab>Facebook</button>
+    <button ion-fab>Twitter</button>
+    <button ion-fab>Youtube</button>
+  </ion-fab-list>
+ 
+</ion-fab> -->
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage"  #content swipeBackEnabled="false"></ion-nav>

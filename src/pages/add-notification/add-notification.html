@@ -1,0 +1,37 @@
+<ion-header>
+  <div>
+      <ion-row style="padding-top: 13px;padding-right: 11px;">
+          <ion-col col-1 (click)="dismiss()">
+              <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+              <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-11 style="margin-top: 10px; text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"addnotification"|translate}}
+          </ion-col>
+      </ion-row>
+  </div>
+</ion-header>
+<ion-content padding>
+  <ion-item style="border: 1px solid gray;border-radius: 10px;margin: 6px 0px;">
+    <ion-label>   {{"choosesenders"|translate}}</ion-label>
+    <ion-select multiple="true" [(ngModel)]="UserType"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+      <ion-option  value="1">
+           {{"clients"|translate}}
+      </ion-option>
+      <ion-option  value="3">
+        {{"translators"|translate}}
+      </ion-option>
+      <ion-option  value="4">
+        {{"reviewers"|translate}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-input style="margin-bottom: 5px; border: 1px solid gray;background-color:#fff; border-radius: 10px;" [(ngModel)]="notificationTitle" type="text"  placeholder='{{ "notificationTitle"|translate}}'> </ion-input>
+
+  <ion-textarea  style="border: 1px solid gray;background-color:#fff; border-radius: 10px;" placeholder='{{ "notificationBody"|translate}}' rows="5" [(ngModel)]="notificationMessage"></ion-textarea>
+
+  <button [disabled]="notificationMessage==''" (click)="send()"  ion-button full color="custom2" style="    margin-top: 6%;height: 48px;border-radius: 15px;font-size: 17px;">
+    {{"send"|translate}}
+  </button>
+</ion-content>

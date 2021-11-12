@@ -1,0 +1,89 @@
+
+
+<ion-header>
+  <div style="background-color: #fff;">
+    <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-11 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"SpecializationPanel"|translate}}
+        </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+ <p> {{"general feilds"|translate}} </p>
+
+ <ion-row>
+  <ion-item style="background-color: #f2f2f2;padding-left: 0px !important;">
+    <ion-label style="    padding: 0px 6px;">  {{"choose"|translate}}</ion-label>
+    <ion-select (ionChange)="chooseFeild()" [(ngModel)]="GeneralFeild"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+      <ion-option  *ngFor="let feild of  GeneralFeilds" [value]="feild.ID">
+          <span *ngIf="dir==true">
+            {{feild.SpecializationName}}
+          </span>
+          <span *ngIf="dir==false">
+            {{feild.SpecializationName}}
+          </span>
+      </ion-option>
+    </ion-select>
+  </ion-item>
+</ion-row>
+
+<div *ngIf="isSelected==true">
+<p> {{"specific feilds"|translate}} </p>
+
+<ion-card style="margin: 0px !important;width: 100%">
+  <ion-card-header style="background-color:#FFAA45;color: white;">
+    <ion-row>
+      <ion-col col-5 style="text-align:center;"> {{"Name"|translate}} </ion-col>
+      <ion-col col-5 style="text-align:center;"> {{"admin"|translate}}</ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-1>
+        <ion-icon name="add" style="font-size: 20px;color:white" (click)="addNewSpecializationchild()" > </ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-card-header>
+</ion-card>
+
+<div *ngIf="SpecificFeilds!=0">
+  <ion-card *ngFor="let feild of SpecificFeilds" style="margin: 0px !important;width: 100%">
+    <ion-card-header>
+      <ion-row>
+        <ion-col col-5 style="text-align: center;"> {{feild.SpecializationName}} </ion-col>
+        <ion-col col-5 style="text-align: center;">
+          <span *ngIf="feild.AdminName!=null" style="border-bottom: 1px solid blue;"  (click)="AdminProfile(feild._Fk_AdminID)">
+            {{feild.AdminName}}
+          </span>
+        </ion-col>
+       <ion-col col-1>
+          <ion-icon name="ios-trash" style="color:red" (click)="delete(feild.ID)"></ion-icon>
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="md-create" (click)="edit(feild.ID,feild.SpecializationName)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+</div>
+
+<div *ngIf="SpecificFeilds==0" style="margin-top: 30%;text-align: center;font-size: 23px; color:#3B5E66 ">
+  {{noSpecificFeilds}}
+</div>
+
+</div>
+
+<div style="margin-top: 48px;">
+
+</div>
+<ion-fab right bottom>
+  <button ion-fab color="custom2" (click)="addNewSpecialization()">
+    <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+  </button>
+</ion-fab>
+
+</ion-content>

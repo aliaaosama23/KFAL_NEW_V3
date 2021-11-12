@@ -1,0 +1,215 @@
+
+<ion-header>
+    <div style="background-color: #F2F2F2;height: 110px;">
+        <ion-row style="padding-top: 13px;padding-right: 11px;padding-left: 11px;">
+          <ion-col col-1 (click)="dismiss()">
+            <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+            <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+          </ion-col>
+          <ion-col col-11 style="text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+            {{"create request"|translate}}
+          </ion-col>
+        </ion-row>
+    </div>
+
+    <div style="margin-top: -28px;margin-left: 14px; margin-right: 14px;">
+      <ion-row style="background-color: #f2f2f2;border-radius: 0px 0px 40px 41px;">
+        <!-- <ion-col col-1></ion-col> -->
+        <ion-col col-5 style="    text-align: center;font-size: 15px;">
+          <div (click)="chooseLangFrom()" >
+            <p style="white-space: nowrap;">
+              <ion-icon name="ios-arrow-down-outline"></ion-icon> 
+              <span style="font-size: 16px;">{{langFrom}}</span>
+            </p>
+          </div>
+        </ion-col>
+
+        <ion-col col-2 style="text-align: center;">
+           <ion-icon *ngIf="dir==false" style="color:#FFAA45;font-size: 31px;padding: 5px 1px;" name="ios-arrow-round-forward-outline"></ion-icon>
+           <ion-icon *ngIf="dir==true" style="color:#FFAA45;font-size: 31px;padding: 5px 1px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+        </ion-col>
+
+        <ion-col col-5 style="text-align: center;">
+          <div (click)="chooseLangTo()" *ngIf="ReviewType!=3">
+            <p style="white-space: nowrap;">
+               <ion-icon name="ios-arrow-down-outline"></ion-icon> 
+               <span style="font-size: 16px;"> {{langTo}}</span>
+            </p>
+          </div>
+
+          <div *ngIf="ReviewType==3">
+            <p style="white-space: nowrap;">
+              <span style="font-size: 16px;">{{langTo}}</span>
+            </p>
+          </div>
+       </ion-col>
+        <!-- <ion-col col-1></ion-col> -->
+      </ion-row>
+    </div>
+</ion-header>
+<ion-content style="padding-bottom: 0px;">
+    <div id="newRequestData" >
+      <div *ngIf="chooseTypeReviweing">
+          <ion-row>
+              <ion-col col-4 style="text-align: center;font-size: 15px;white-space: nowrap;">
+                {{"reviewing"|translate}}
+              </ion-col>
+              <ion-col col-8></ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-item style="margin: 0px 8px;">
+                  <ion-label> {{"reviewing"|translate}}</ion-label>
+                    <ion-select (ionChange)="selectType()" placeholder='{{"reviewing"|translate}}'  [(ngModel)]= "ReviewType"  style="max-width: 100%;    width: 100%;  padding: 9px !important;" okText='{{"ok"|translate}}'[(ngModel)]="ReviewType" cancelText='{{"cancel"|translate}}' >
+                        <ion-option  value="l">
+                           {{"Check linguist"|translate}}
+                        </ion-option>
+                        <ion-option  value="2">
+                          {{"Check academic"|translate}}
+                          </ion-option>
+                    </ion-select>
+                </ion-item>
+          </ion-row>
+      </div>
+
+      <ion-item style="margin: 0px 8px;">
+          <ion-label>   {{"general_feild"|translate}}</ion-label>
+          <ion-select (ionChange)="select_general_feild()" [(ngModel)]="GeneralFeild"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+            <ion-option  *ngFor="let feild of general_feilds" [value]="feild.ID">{{feild.SpecializationName}}</ion-option>
+          </ion-select>
+      </ion-item>
+
+      <ion-item style="margin: 0px 8px;">
+          <ion-label>    {{"specific_feild"|translate}}</ion-label>
+          <ion-select [(ngModel)]="SpecificFeild"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+            <ion-option  *ngFor="let feild of specific_feilds" [value]="feild.ID">
+              {{feild.SpecializationName}}
+            </ion-option>
+          </ion-select>
+      </ion-item>
+
+      <ion-item style="margin: 0px 8px;">
+          <ion-label>    {{ "file_level"|translate}}</ion-label>
+          <ion-select [(ngModel)]="Level"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+            <ion-option *ngFor="let level of document_levels" [value]="level._EducationLevel_ID">
+              {{level.EducationNameEn}}
+            </ion-option>
+          </ion-select>
+      </ion-item>
+
+      <ion-row style="    padding-right: 8px;padding-left: 8px;margin: 12px 0;">
+          <ion-col *ngIf="dir==true" col-4 style="text-align: right;font-size: 15px;padding:0px;">
+              {{ "deadline"|translate}}
+          </ion-col>
+          <ion-col *ngIf="dir==false" col-4 style="text-align: left;font-size: 15px;padding:0px;">
+            {{ "deadline"|translate}}
+        </ion-col>
+          <ion-col col-8></ion-col>
+      </ion-row>
+
+      <ion-item>
+          <ion-scroll scrollX="true" style="width: 100%;height: 48px;padding: 13px; " >
+              <ion-row nowrap class="headerChip">
+                  <div *ngFor="let deadline of deadlines" style="    padding: 6px;">
+                      <ion-chip [ngClass]="deadline.isselected?'selected':'notselected'" style="white-space: normal;" (click)="select_deadline(deadline)">
+                          <ion-label>    {{deadline.Houre}} {{"hour"|translate}}  </ion-label>
+                      </ion-chip>
+                  </div>
+              </ion-row>
+            </ion-scroll>
+      </ion-item>
+
+
+      <ion-row style="padding-right: 8px;padding-left: 8px; margin: 12px 0px;">
+          <ion-col *ngIf="dir==true" col-4 style="line-height: 36px;padding: 0px;text-align: right;font-size: 15px;white-space: nowrap;">
+              {{ "number_of_pages"|translate}}
+          </ion-col>
+          <ion-col *ngIf="dir==false" col-4 style="line-height: 36px;padding: 0px;text-align: left;font-size: 15px;white-space: nowrap;">
+            {{ "number_of_pages"|translate}}
+          </ion-col>
+          <ion-col col-4></ion-col>
+          <ion-col col-1 (click)="increase()" style="padding: 0px !important;">
+            <ion-icon name="ios-add-circle-outline" style="font-size: 33px;"></ion-icon>
+          </ion-col>
+          <ion-col col-1 style="text-align: center;color: black;font-size: 17px;white-space: nowrap;line-height: 25px;">
+             {{No_of_pages}}
+          </ion-col>
+          <ion-col col-1 (click)="decrease()" style="padding: 0px !important;">
+            <ion-icon name="ios-remove-circle-outline" style="font-size: 33px;"></ion-icon>
+          </ion-col>
+          <ion-col col-1></ion-col>
+      </ion-row>
+
+      <ion-row style="padding-right: 8px;padding-left: 8px; margin: 12px 0px;">
+          <ion-col *ngIf="dir==true" col-4 style="padding: 0px; text-align: right;font-size: 15px;white-space: nowrap;">
+              {{"expected_amount"|translate}}
+          </ion-col>
+          <ion-col  *ngIf="dir==false" col-4 style="padding: 0px;text-align: left;font-size: 15px;white-space: nowrap;">
+            {{"expected_amount"|translate}}
+        </ion-col>
+          <ion-col col-2>
+
+          </ion-col>
+          <ion-col col-6 style="text-align: center;" >
+            {{No_of_pages*PagePrice}}
+          </ion-col>
+      </ion-row>
+
+      <ion-row style="padding: 0px 8px;margin: 12px 0;">
+          <ion-col *ngIf="dir==true" col-4 style="padding: 0px; text-align: right;font-size: 15px;">
+              {{ "notices"|translate}}
+          </ion-col>
+          <ion-col *ngIf="dir==false" col-4 style="padding: 0px;text-align: left;font-size: 15px;">
+            {{ "notices"|translate}}
+        </ion-col>
+          <ion-col col-8></ion-col>
+      </ion-row>
+
+      <ion-item style="padding-left: 8px !important;">
+         <ion-textarea maxlength="80"  [(ngModel)]="notices"  style="box-sizing: border-box;height: 66px;width: 309px;border-radius: 10px;border: 1px solid #808080;" type="text"></ion-textarea>
+      </ion-item>
+
+      <span style="color: gray;position: absolute;left: 20px;padding: 3px;margin-top: -25px; ">  {{notices.length}}/80</span>
+<!--
+      <div class="fileUpload btn btn-primary">
+        <ion-icon name="camera"></ion-icon>
+        <input  id="uploadBtn" type="file" accept="image/*" class="upload" (change)="handleFileInput($event,$event.target.files)"/>
+      </div> -->
+
+      <ion-row style="margin: 6px 0px;padding: 0px 8px;">
+        <ion-col col-3 style="white-space: nowrap;">
+          {{choosefile}}
+        </ion-col>
+        <ion-col ccol-9>
+          <p style="font-size: 16px;color:black;"> {{FilleName}}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-4 style="padding: 0px;">
+          <div style="text-align: center;background-color:#FFAA45;border-radius:8px;margin: 4px 10px;height: 40px;" class="fileUpload btn btn-primary">
+            <ion-icon style="color: white;font-size: 29px;margin-top: 7px;" name="md-cloud-upload"></ion-icon>
+            <input  id="uploadBtn" type="file" accept="application/pdf" class="upload" (change)="handleFileInput($event,$event.target.files)"/>
+          </div>
+        </ion-col>
+        <ion-col col-4 style="padding: 0px;">
+          <div style="text-align: center; background-color:#FFAA45;border-radius:8px;margin: 4px 10px;height: 40px;" class="fileUpload btn btn-primary">
+            <ion-icon style="color: white;font-size: 29px;margin-top: 7px;" name="md-camera"></ion-icon>
+            <input  id="uploadBtn" type="file" accept="image/*" class="upload" (change)="handleFileInput($event,$event.target.files)"/>
+          </div>
+        </ion-col>
+        <ion-col col-4 style="padding: 0px;">
+          <div style="text-align: center; background-color:#FFAA45;border-radius:8px;margin: 4px 10px;height: 40px;" class="fileUpload btn btn-primary">
+            <ion-icon style="color: white;font-size: 29px;margin-top: 7px;" name="md-mic"></ion-icon>
+            <input  id="uploadBtn" type="file" accept="audio/*" class="upload" (change)="handleFileInput($event,$event.target.files)"/>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <div style="border-radius: 15px;margin: 10px;text-align: center;">
+        <button (click)="saveRequest()" ion-button color="custom2" full style="height: 43px;border-radius: 10px;">
+           <span style=" font-size: 16px;">  {{ "save1"|translate}}</span>
+        </button>
+    </div>
+    </div>
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header style="background-color: #F2F2F2;">
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{"aboutApp"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #F2F2F2;">
+
+  <div *ngIf="!isediting" style="text-align: center;font-size: 20px;color: black;">
+     {{about}}
+  </div>
+
+  <ion-item *ngIf="isediting" style="    border-radius: 1em;">
+    <ion-textarea rows="6" cols="20" placeholder="{{'enter about text'|translate}}" [(ngModel)]="about"></ion-textarea>
+  </ion-item>
+
+  <div *ngIf="isadmin">
+    <ion-fab left bottom *ngIf="isediting">
+      <button ion-fab (click)="update()" col>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab left bottom *ngIf="!isediting">
+      <button ion-fab (click)="edit()" >
+        <ion-icon name="md-create"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+
+</ion-content>

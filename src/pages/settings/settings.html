@@ -1,0 +1,39 @@
+<ion-header style="background-color: #F2F2F2;">
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+         <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+         <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title>{{"Menu.settings"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #F2F2F2;">
+
+  <ion-item>
+    <ion-label>{{"sound"|translate}}</ion-label>
+    <ion-toggle mode="ios" [(ngModel)]="notificationSound" (ionChange)="changeStatus()"></ion-toggle>
+  </ion-item>
+
+  <ion-row (click)="change_list_status()">
+    <ion-col col-11 style="font-size:17px;padding: 0px;">     {{"lang"|translate}}</ion-col>
+    <ion-col col-1 style="font-size: 16px;">
+       <ion-icon [name]="IconName" ></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <ion-list (ionChange)="set_language()" radio-group [(ngModel)]="preferedLanguage" *ngIf="language_list=='opened'">
+    <ion-item *ngFor="let language of Languages">
+      <ion-label *ngIf="language.Lang_ID==1">{{language._Lang_NameAr}}</ion-label>
+      <ion-label *ngIf="language.Lang_ID!=1">{{language._Lan_Name_En}}</ion-label>
+      <ion-radio  [value]="language._LangAbbreviation"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

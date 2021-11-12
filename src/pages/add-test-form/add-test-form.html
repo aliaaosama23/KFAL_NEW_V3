@@ -1,0 +1,68 @@
+
+<ion-header>
+  <div style="background-color: #fff;">
+    <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-11 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"testforms"|translate}}
+        </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+<ion-card style="margin:0px !important;width:100%">
+  <ion-card-content >
+    <div>
+      <ion-row>
+        <ion-item style="background-color: #f2f2f2;padding-left: 0px !important;">
+          <ion-label style="    padding: 0px 6px;">  {{"language choose"|translate}}</ion-label>
+          <ion-select (ionChange)="chooselanguage()" [(ngModel)]="language"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+            <ion-option  *ngFor="let lang of languages" [value]="lang.Lang_ID">
+                <span *ngIf="dir==true">
+                  {{lang._Lang_NameAr}}
+                </span>
+                <span *ngIf="dir==false">
+                  {{lang._Lan_Name_En}}
+                </span>
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+
+      <div   style="text-align: center;background-color:#FFAA45;border-radius:8px;margin: 13px 0px;height: 40px;" class="fileUpload btn btn-primary">
+        <ion-row>
+          <ion-col col-1>
+              <ion-icon style="color: white;font-size: 35px;" name="md-cloud-upload"></ion-icon>
+          </ion-col>
+          <ion-col col-11>
+              <p style="text-align: center;margin-top: 6px;font-size: 16px;text-transform: none;color: white;text-transform: initial;"> {{FilleName}}</p>
+          </ion-col>
+        </ion-row>
+        <input  id="uploadBtn" type="file" class="upload" (change)="handleFileInput($event,$event.target.files)"/>
+      </div>
+
+      <ion-row>
+        <button ion-button (click)="add()" block color="custom1"> {{"add test form"|translate}}</button>
+      </ion-row>
+
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<ion-list *ngIf="testforms.length!=0" >
+  <ion-item *ngFor="let testform of testforms">
+    <ion-icon item-end name="ios-trash" (click)="removeTest(testform.TestForm_ID)" style="color:red"></ion-icon>
+    <ion-icon item-end name="md-eye" (click)="previewTest(testform.TestFormPath)"></ion-icon>
+    <ion-label style="white-space: normal;">    {{testform.TestFormPath}} </ion-label>
+  </ion-item>
+</ion-list>
+
+<div *ngIf="testforms.length==0" style="font-size: 20px; text-align: center;margin-top: 10%;">
+   {{nodataResult}}
+</div>
+</ion-content>

@@ -1,0 +1,97 @@
+page-admin-add-user {
+  ion-label#lbl-16 {
+    text-align: left !important;
+}
+ion-label#lbl-17
+{
+    text-align: left !important;
+}
+html[dir="rtl"]{
+    ion-label#lbl-9 {
+        font-size: 14px;
+    }
+
+  }
+
+html[dir="ltr"]{
+    ion-label#lbl-7 {
+        font-size: 12px;
+    }
+    ion-label#lbl-9 {
+        font-size: 12px;
+    }
+    ion-label#lbl-16 {
+        text-align:right;
+    }
+    ion-label#lbl-17
+    {
+        text-align: right;
+    }
+}
+
+.passwordIcon{
+    font-size:2rem !important;
+    // position: relative !important;
+
+    // margin: 0 auto !important;
+ }
+ ion-checkbox.checkbox.checkbox-ios.ng-valid.ng-touched.ng-dirty {
+    margin-top: -9px;
+}
+ ////----------------md
+ .radio-md .radio-icon {
+    left: 0;
+    top: 5px;
+    margin: 0;
+    border-radius: 50%;
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #787878;
+}
+ .item-md{
+    padding-left: 0px !important;
+}
+.item-md .radio-md {
+    position: static;
+    display: block;
+    margin: 0px 10px 9px 0;
+}
+
+.checkbox-md .checkbox-checked {
+    border-color: #ffaa45;
+    background-color: #ffaa45;
+}
+.toolbar-background.toolbar-background-md {
+  background: #ffffff !important;
+}
+ /////--------------ios
+ .radio-ios .radio-icon {
+    left: 0;
+    top: 5px;
+    margin: 0;
+    border-radius: 50%;
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #787878;
+}
+ .item-ios{
+    padding-left: 0px !important;
+}
+.item-ios .radio-ios {
+    position: static;
+    display: block;
+    margin: 0px 10px 9px 0;
+}
+.toolbar-background.toolbar-background-IOS {
+  background: #ffffff !important;
+}
+
+}

@@ -1,0 +1,141 @@
+firbase dynamic link:
+google-site-verification=QyI6VIzuNIVYLloQOpUPdxm4VQg2YgztglsYMqMLXNQ
+
+
+
+======================================================================================================
+npm install @ngx-translate/core @ngx-translate/http-loader --save.
+
+npm install @ngx-translate/core@8.0.0 --save
+npm install @ngx-translate/http-loader@2.0.1 --save
+
+
+------------------ phone player id ------------------
+c9b09a0c-dfa2-454d-b8f2-3028b38bb98f
+
+
+api
+
+
+������� ������ :
+- ����� �������� ��� �� ������ �� ���
+* (��� ���� ���� ������ ���� )�������: ��� ������ ������
+*������� �������
+*������� (���� ��� �� �����)
+*������� ������(������ �����)
+*�� �������(���� ��� ���� �����)
+*����� ���� (����� ����� �� ��� ���������)
+*������
+
+-----------------------------------------------------------------------------------------
+ionic cordova build --release android --prod
+keytool -genkey -v -keystore kfal.keystore -alias alias_kfal -keyalg RSA -keysize 2048 -validity 10000
+-------------------------------------------------------------------------------------------
+
+Enter keystore password:
+Re-enter new password:
+What is your first and last name?
+  [Unknown]:  nitco
+What is the name of your organizational unit?
+  [Unknown]:  nitcotek
+What is the name of your organization?
+  [Unknown]:  nitco
+What is the name of your City or Locality?
+  [Unknown]:  mansoura
+What is the name of your State or Province?
+  [Unknown]:  Egypt
+What is the two-letter country code for this unit?
+  [Unknown]:  eg
+Is CN=nitco, OU=nitcotek, O=nitco, L=mansoura, ST=Egypt, C=eg correct?
+  [no]:  y
+
+--------------------------------------------------------------------------------------------
+password:123456
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kfal.keystore app-release-unsigned.apk alias_kfal
+
+
+zipalign -v 4 app-release-unsigned.apk kfal1.apk
+C:\Users\alyaa.NITCOTEK\AppData\Local\Android\Sdk\build-tools\28.0.3\
+
+------------------------
+user:
+sarraa@nitcotek.com
+111
+
+sarraa11@nitcotek.com
+111
+
+aliaa@gmail.com
+111
+-------------------------------------------------
+translator:
+hanan@nitcotek.com
+111
+
+alyaa1@nitcotek.com
+111
+--------------------------------------------------
+reveiwer:
+alyaa@nitcotek.com
+111
+
+sarraa1@nitcotek.com
+111
+
+--------------------------------------------------
+admin:
+bareedon@gmail.com
+111
+----------------------------------------------------
+Unassigned Orders Page (to be selected by Interpretrs)
+ this.acendingOrders
+
+My jobs Page (for interpreter & auditor to manage/track their work)
+  // //----------------------------------- admin and new request added   ----------------------------//
+            // alert(notification.title)
+              if(notification.title==" اضافة طلب جديد  "){
+ 
+                this.nav.push('AdminOrderDetailsPage',{
+                  'Request_ID':notification.additionalData.AdditionalData.RequestID,
+                  'Request_type':"RequestType=='new' || RequestType=='جديدة'"
+                })
+              }
+======================================================================================================
+Change app theming depend on user gender:
+
+https://www.npmjs.com/package/ionic-angular-theme-switch
+https://www.npmjs.com/package/ngx-color-picker
+https://devdactic.com/dynamic-theming-ionic/
+======================================================================================================
+program versions:
+   @ionic/cli-utils  : 1.19.2
+    ionic (Ionic CLI) : 3.20.0
+
+global packages:
+
+    cordova (Cordova CLI) : 9.0.0 (cordova-lib@9.0.1)
+
+local packages:
+
+    @ionic/app-scripts : 3.2.2
+    Cordova Platforms  : android 7.1.4
+    Ionic Framework    : ionic-angular 3.9.5
+
+System:
+
+    Android SDK Tools : 26.1.1
+    Node              : v8.11.3
+    npm               : 5.6.0
+    OS                : Windows 10
+
+Environment Variables:
+
+    ANDROID_HOME : C:\Users\alyaa\AppData\Local\Android\Sdk
+
+Misc:
+
+    backend : pro
+
+
+  device id:
+    fNPoZnkbEwE:APA91bHv9mZKIPvewUibH_OSh-UKKAjX-W1rAUmrCgHUwICnO-qZb9rWCUVBtouej707JRDU1IXbILXeYfq0dV2z-izs1YB6EH5ZgR8PIZYtsB2PCAIAIQYikGEYFEZIaPKqVPNyOrGh

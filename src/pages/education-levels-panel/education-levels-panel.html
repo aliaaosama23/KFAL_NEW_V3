@@ -1,0 +1,62 @@
+
+<ion-header>
+  <div style="background-color: #fff;">
+    <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col  col-11 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"eduaction levels Panel"|translate}}
+        </ion-col>
+       
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content >
+  <ion-card>
+    <ion-card-header style="background-color:#FFAA45;color: white;">
+      <ion-row>
+
+        <ion-col col-4 > {{"Lang_Name_Ar"|translate}} </ion-col>
+        <ion-col col-4 > {{"Lang_Name_En"|translate}} </ion-col>
+        <ion-col col-4 style="text-align: center;"> {{"admin"|translate}}</ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+
+
+  <ion-card *ngFor="let level of EducationLevels" style="position: relative;">
+
+    <ion-card-header>
+      <ion-icon name="md-close" *ngIf="dir==false" (click)="delete(level._EducationLevel_ID)" style="position: absolute;top:2px;right:9%;color:red"></ion-icon>
+      <ion-icon name="md-create" *ngIf="dir==false" (click)="edit(level._EducationLevel_ID,level.EducationNameAr,level. EducationNameEn)" style="position: absolute;top:2px;right:1%"></ion-icon>
+
+
+      <ion-icon name="md-close" *ngIf="dir==true" (click)="delete(level._EducationLevel_ID)" style="position: absolute;top:2px;left:9%;color:red"></ion-icon>
+      <ion-icon name="md-create" *ngIf="dir==true" (click)="edit(level._EducationLevel_ID,level.EducationNameAr,level. EducationNameEn)" style="position: absolute;top:2px;left:1%"></ion-icon>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-4  style=" white-space: normal;"> {{level.EducationNameAr}} </ion-col>
+        <ion-col col-4  style=" white-space: normal;"> {{level.EducationNameEn}}  </ion-col>
+        <ion-col col-4 style="text-align: center;">
+           <span *ngIf="level.AdminName!=null" style="border-bottom: 1px solid blue;"  (click)="AdminProfile(level._Fk_AdminID)">
+             {{level.AdminName}}
+          </span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <div style="margin-top: 48px;">
+
+  </div>
+  <ion-fab right bottom>
+    <button ion-fab color="custom2" (click)="addNewLevel()">
+      <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

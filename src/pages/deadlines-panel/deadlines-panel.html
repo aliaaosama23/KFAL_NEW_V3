@@ -1,0 +1,53 @@
+
+
+<ion-header>
+  <div style="background-color: #fff;">
+    <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-11 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"deadlinesPanel"|translate}}
+        </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content >
+  <ion-card>
+    <ion-card-header style="background-color:#FFAA45;color: white;">
+      <ion-row>
+        <ion-col col-4 style="text-align:center;"> {{"Hour period"|translate}} </ion-col>
+        <ion-col col-4 style="text-align:center;"> {{"price"|translate}}</ion-col>
+        <ion-col col-4></ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+
+
+  <ion-card *ngFor="let deadline of Deadlines">
+    <ion-card-header >
+      <ion-row>
+        <ion-col col-4 style="text-align: center;"> {{deadline._Hour}} </ion-col>
+        <ion-col col-4 style="text-align: center;"> {{deadline._Price}}</ion-col>
+        <ion-col col-2></ion-col>
+        <ion-col col-1>
+          <ion-icon name="ios-trash" style="color: red;" (click)="delete(deadline.DeadlineID)"></ion-icon>
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="md-create" (click)="edit(deadline.DeadlineID,deadline._Hour,deadline._Price)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+
+  <div style="margin-top: 48px;">
+
+  </div>
+  <ion-fab right bottom>
+    <button ion-fab color="custom2" (click)="addNewDeadline()">
+      <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

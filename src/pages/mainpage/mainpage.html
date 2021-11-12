@@ -1,0 +1,87 @@
+<!-- 
+<ion-header>
+<ion-row style="padding-top: 13px;padding-right: 11px;">
+  <ion-col col-1 (click)="dismiss()">
+    <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+    <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+  </ion-col>
+  <ion-col col-11 style="text-align: center;color: #214952;font-size: 15.61px;    margin-top: 2px;">
+    {{"Home_client.for create request please choose request type"|translate}} 
+  </ion-col>
+</ion-row>
+</ion-header> -->
+
+
+<ion-header>
+  <div style="background-color: #F2F2F2;height: 110px;">
+      <ion-row style="padding-top: 13px;padding-right: 11px;padding-left: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 40px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 40px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-11 style="text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+          {{"create request"|translate}}
+        </ion-col>
+      </ion-row>
+  </div>
+
+  <div style="margin-top: -28px;margin-left: 14px; margin-right: 14px;">
+    <ion-row style="background-color: #f2f2f2;border-radius: 0px 0px 40px 41px;">
+      <ion-col col-12>
+        <p style="text-align: center;">
+          {{"Home_client.for create request please choose request type"|translate}}
+         </p> 
+      </ion-col>
+   
+    
+    </ion-row>
+  </div>
+</ion-header>
+<ion-content padding>
+ <!--  <ion-row>
+    <ion-col col-12>
+           <p style="color: #214952;font-size: 15.61px;line-height: 16px;">
+            {{"Home_client.for create request please choose request type"|translate}}
+           </p>
+    </ion-col>
+  </ion-row> -->
+  <!-- <div style="padding: 5% 0;    margin-top: 8%;">
+    <button ion-button color="custom2" full (click)="chooseRequestType(1)" >
+      <p style="font-size: 19px;">{{"Home_client.translation only"|translate}}</p>
+    </button>
+    <button ion-button color="custom2" full (click)="chooseRequestType(2)">
+      <p style="font-size: 19px;">{{"Home_client.translation and academic review"|translate}} </p>
+     </button>
+    <button ion-button color="custom2" full (click)="chooseRequestType(3)">
+      <p style="font-size: 19px;" >{{"Home_client.academic review only"|translate}}</p>
+    </button>
+  </div> -->
+
+  <div>
+    <ion-card color="custom2" (click)="chooseRequestType(1)" >
+        <ion-card-content>
+          <p style="font-size: 17px;">{{"Home_client.translation only"|translate}}</p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card color="custom2" (click)="chooseRequestType(2)" >
+      <ion-card-content>
+        <p style="font-size: 17px;">{{"Home_client.translation and academic review"|translate}} </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="custom2" (click)="chooseRequestType(3)" >
+      <ion-card-content>
+        <p style="font-size: 17px;">{{"Home_client.translation and academic review"|translate }} </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+ <div style="text-align: center;">
+   <button style="height: 50px;width: 50px;" [disabled]="RequestType==0" ion-button round color="custom1" (click)="makeRequest()" >
+             <ion-icon style="    font-size: 27px;" *ngIf="dir==true" name="md-arrow-back"></ion-icon>
+             <ion-icon style="    font-size: 27px;" *ngIf="dir==false" name="md-arrow-forward"></ion-icon>
+   </button>
+ </div>
+</ion-content>

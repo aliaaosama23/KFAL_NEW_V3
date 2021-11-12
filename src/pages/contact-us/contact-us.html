@@ -1,0 +1,29 @@
+<ion-header style="background-color: white;" >
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{ "contact us"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="!admin">
+    <ion-input style="margin-bottom: 8px;    border: 1px solid gray;background-color:#fff; border-radius: 10px;"  [(ngModel)]="contactTitle" type="text"  placeholder='{{ "contactTitle"|translate}}'>
+
+    </ion-input>
+    <ion-textarea  style="    border: 1px solid gray;background-color:#fff; border-radius: 10px;" placeholder='{{ "write"|translate}}' rows="5" [(ngModel)]="contactMessage"></ion-textarea>
+
+    <button [disabled]="contactMessage==''" (click)="sendContactMsg()"  ion-button full color="custom2" style="    margin-top: 6%;height: 48px;border-radius: 15px;font-size: 17px;">
+      {{"send"|translate}}
+    </button>
+  </div>
+</ion-content>

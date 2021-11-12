@@ -1,0 +1,34 @@
+page-admin-add-discussion {
+  .item-md{
+    padding-left: 0px !important;
+  }
+  .item-ios{
+    padding-left: 0px !important;
+  }
+  .text-input-md{
+    margin: 13px 0px !important;
+  }
+
+  .text-input-ios{
+    margin: 13px 0px !important;
+  }
+
+  .input-wrapper {
+    border-bottom: 1px solid gray;
+  }
+  .select-md {
+    padding: 0px !important
+  }
+  .select-ios {
+    padding: 0px !important
+  }
+  input{
+    border-bottom: unset !important;
+  }
+  .toolbar-background.toolbar-background-md {
+    background: unset !important;
+}
+.toolbar-background.toolbar-background-ios {
+  background: unset !important;
+}
+}

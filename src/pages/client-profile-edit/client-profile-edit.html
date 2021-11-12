@@ -1,0 +1,98 @@
+
+<ion-header style="background-color: #F2F2F2;">
+    <ion-navbar  hideBackButton>
+      <ion-row>
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true" style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false" style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+        </ion-col>
+        <ion-col col-10 style="text-align: center;">
+            <ion-title >{{ "profileEdit"|translate}}</ion-title>
+        </ion-col>
+        <ion-col col-1 >
+        </ion-col>
+      </ion-row>
+    </ion-navbar>
+</ion-header>
+<ion-content padding style="background-color: #F2F2F2;padding-bottom: 0px;">
+      <ion-row>
+        <ion-col col-5 style="color:#FFAA45"> {{"Email"|translate}} </ion-col>
+        <ion-col col-7>  </ion-col>
+      </ion-row>
+      <div style="text-align: center;">
+
+          <ion-input type="text" [(ngModel)]="email"></ion-input>
+      </div>
+
+      <ion-row>
+          <ion-col col-5 style="color:#FFAA45"> {{"name"|translate}} </ion-col>
+          <ion-col col-7>  </ion-col>
+      </ion-row>
+      <div style="text-align: center;">
+          <ion-input type="text" [(ngModel)]="name"></ion-input>
+      </div>
+
+      <ion-row>
+          <ion-col col-5 style="color:#FFAA45"> {{"password"|translate}} </ion-col>
+          <ion-col col-7>  </ion-col>
+      </ion-row>
+    
+      <ion-item style="position:relative">
+        <ion-input style="border-bottom: none !important;" [value]="Password" [type]="passwordType" clearOnEdit="false"></ion-input>
+        <ion-icon style="position: absolute;top:0px;right:10px;font-size: 2rem !important;margin: 0 auto !important;" item-end [name]="passwordIcon"  (click)="hideShowPassword()"></ion-icon>
+      </ion-item>
+
+      <div *ngIf="Address!=null">
+        <ion-row>
+          <ion-col col-4 style="padding:0px">
+              <ion-label style="color:#FFAA45" >{{"Address"|translate}}</ion-label>
+          </ion-col>
+          <ion-col col-8> </ion-col>
+        </ion-row>
+        <ion-item style="padding-left:0px">
+            <ion-input   [(ngModel)]="Address" type="text"></ion-input>
+        </ion-item>
+      </div>     
+
+
+      <div *ngIf="country_id!=null">
+          <ion-row > 
+            <ion-col col-4>
+                <ion-label style="color:#FFAA45" >{{"age"|translate}}</ion-label>
+            </ion-col>
+            <ion-col col-8> </ion-col>
+          </ion-row>
+
+          <ion-item style="padding-left: 0px;">
+              <ion-input  [(ngModel)]="Age" type="number"></ion-input>
+          </ion-item>
+
+          <ion-item style="margin: 5px 0px;" style="padding-left:0px">
+            <ion-label style="color:#FFAA45">{{"Country"|translate}}</ion-label>
+            <ion-select (ionChange)="GetCityByCountryID(country_id)" [(ngModel)]="country_id"     okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'  >
+              <ion-option *ngFor="let country of countries" [value]="country.CountryID">
+                {{country.CountryName}}
+              </ion-option>
+            </ion-select>
+           </ion-item>
+      </div>
+     
+      <ion-item  style="margin: 5px 0px;" style="padding-left:0px" *ngIf="country_id!=null">
+          <ion-label style="color:#FFAA45">{{"City"|translate}}</ion-label>
+          <ion-select [(ngModel)]="city_id"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}' >
+            <ion-option  *ngFor="let city of cities" [value]="city.CityID" >
+                {{city.CityName}}
+            </ion-option>
+          </ion-select>
+      </ion-item>
+
+      
+</ion-content>
+<ion-footer>
+    <div style="margin: 2% 8%;;text-align: center;">
+        <button (click)="editProfile()" ion-button color="custom2" full style="height: 48px;border-radius: 10px;">
+           <span style=" font-size: 16px;">  {{ "edit data"|translate}}</span>
+        </button>
+    </div>
+</ion-footer>

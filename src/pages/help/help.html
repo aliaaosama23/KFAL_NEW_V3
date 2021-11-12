@@ -1,0 +1,41 @@
+<ion-header style="background-color: #F2F2F2;">
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{ "help"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+<ion-content padding  style="background-color: #F2F2F2;">
+  <button (click)="openPage('ComplaintsPage')"  ion-button full color="custom2" style="    margin-top: 14%;height: 48px;border-radius: 15px;font-size: 17px;">
+    {{"Complaints"|translate}}
+  </button>
+
+  <button (click)="openPage('RulesPage')"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 17px 0px;">
+    {{"terms"|translate}}
+  </button>
+
+  <button (click)="openPage('FaqPage')"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 17px 0px;">
+    {{"question"|translate}}
+  </button>
+
+  <button (click)="openPage('AllFilesPage')"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 17px 0px;">
+    {{"files"|translate}}
+  </button>
+
+  <button (click)="openPage('AboutPage')"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 17px 0px;">
+    {{  "aboutApp"|translate}}
+  </button>
+
+  <button *ngIf="!admin" (click)="openPage('ContactUsPage')"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 17px 0px;">
+    {{  "contact us"|translate}}
+  </button>
+
+</ion-content>

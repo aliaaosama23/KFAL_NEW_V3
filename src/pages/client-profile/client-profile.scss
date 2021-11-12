@@ -1,0 +1,47 @@
+page-client-profile {
+    span.button-inner {
+        font-size: 19px;
+    }
+    .passwordIcon{
+        font-size:2rem !important;
+        position: relative !important;
+        top: 8px !important;
+        margin: 0 auto !important;
+     }
+     .item-md{
+        background-color: unset ;
+        padding-left: 0px !important;
+    }
+    .item-ios{
+        background-color: unset ;
+        padding-left: 0px !important;
+    }
+    ion-select {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        overflow: hidden;
+        max-width: 100% !important;
+    }
+
+    .item-md.item-block .item-inner{
+      padding-right: 0px !important;
+    }
+    .item-ios.item-block .item-inner{
+      padding-right: 0px !important;
+    }
+    .toggle-ios.toggle-checked .toggle-icon {
+      background-color: #FFAA45;
+  }
+  input {
+    padding-bottom: 6px !important;
+    border-bottom: unset !important;
+}
+ion-col.col {
+  padding: 0px 5px !important;
+}
+input.text-input.text-input-md {
+  text-align: center;
+}
+}

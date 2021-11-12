@@ -1,0 +1,54 @@
+<ion-header style="background-color: #F2F2F2;">
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true" style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false" style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{ "notifications"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #F2F2F2;">
+
+  <div style="margin-top: 40%;" *ngIf="notifications.length==0">
+    <p style="text-align: center;color: #FFAA45;">{{ "no_notification"|translate}}</p>
+  </div>
+
+  <div *ngIf="notifications.length!=0">
+    <!-- <ion-row *ngFor="let notification of notifications"  style="    margin-bottom: 6px;background-color: #F2F2F2;padding: 6px;border-radius: 5px;">
+      <ion-col col-2 style="background-color: #214952;color: #FFAA45;white-space: normal;border-radius: 5px;font-size: 15px;text-align: center;">
+        <div style="margin-bottom: 9px;"> title :  </div>
+        <div>   </div>
+      </ion-col>
+      <ion-col col-6>
+        <div style=" margin-top: 10%;   padding: 0px 13px; margin-bottom: 12px;color: #3B5E66;  font-size: 18px;line-height: 15px;">
+            {{notification.message}}
+        </div>
+      </ion-col>
+      <ion-col col-4 style="white-space: nowrap;" >
+        <div style="margin-bottom: 9px;text-align: center;"> {{"client"|translate}}  </div>
+        <div style="text-align: center;    overflow: hidden;">  {{notification.UserName}} </div>
+      </ion-col>
+    </ion-row> -->
+
+    <div  *ngFor="let notification of notifications">
+      <h1> {{notification.title}}</h1>
+      <h3>    {{notification.message}}</h3>
+    </div>
+  </div>
+
+
+  <ion-fab right bottom *ngIf="admin==true">
+    <button ion-fab color="custom1" (click)="addcustomNotification()">
+      <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

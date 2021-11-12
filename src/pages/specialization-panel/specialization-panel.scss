@@ -1,0 +1,17 @@
+page-specialization-panel {
+  .toolbar-background.toolbar-background-md{
+    background-color:  white !important
+  }
+
+  .toolbar-background.toolbar-background-ios{
+    background-color:  white !important
+  }
+
+  .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+    color: #000;
+}
+
+.item-input .label-ios, .item-select .label-ios, .item-datetime .label-ios {
+  color: #000;
+}
+}

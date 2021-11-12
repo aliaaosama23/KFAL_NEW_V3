@@ -1,0 +1,41 @@
+<ion-header style="background-color: #F2F2F2;">
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{ "discussions"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background-color: #F2F2F2;">
+  <div *ngIf="!nodata">
+    <div *ngFor="let discussion of MyDiscussions" >
+      <ion-card style="background-color: #e8e7e7;" >
+        <ion-card-header>
+              <h1>{{discussion.TopicName}}</h1>
+        </ion-card-header>
+        <ion-card-content>
+           <p>  {{discussion.TopicContent}}</p>
+        </ion-card-content>
+     </ion-card>
+     <button ion-button color="custom1" style="border-radius:5px;" (click)="DiscussionDetails(discussion.FK_DiscussionTopic_ID,discussion.TopicName,discussion.TopicContent)" full>
+       <p> {{'comments'|translate}}  </p>
+     </button>
+    </div>
+  </div>
+  <div *ngIf="nodata" style="margin-top: 30%;text-align: center;font-size: 19px; color:#3B5E66 ">
+    {{"no discussions"|translate}}
+  </div>
+  <!-- for admin  ceate new  discussion-->
+  <ion-fab right bottom *ngIf="UserTypeCurrentState==2">
+    <button ion-fab color="custom2" (click)="addnewDiscission()">
+      <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

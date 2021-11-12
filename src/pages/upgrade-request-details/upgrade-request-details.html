@@ -1,0 +1,152 @@
+
+<ion-header>
+  <div style="background-color: #fff;">
+    <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-9 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{UserName}}
+        </ion-col>
+        <ion-col col-2  style="margin-top: 9px;text-align: center;"(click)="open_client_profile()">
+          <span *ngIf="dir==true"  style="color:#FFAA45;background-color:#07133c;border-radius: 50%;padding:  6% 18%;text-transform: capitalize;">
+           {{user}}
+          </span>
+          <span *ngIf="dir==false"  style="color:#FFAA45;background-color:#07133c;border-radius: 50%;padding:  6% 10%;text-transform: capitalize;">
+            {{user}}
+          </span>
+        </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-row style="margin: 10px 0px;">
+    <ion-col col-12>
+      <h5>
+        {{ "cv file"|translate}}
+      </h5>
+    </ion-col>
+  </ion-row>
+
+  <div style="background-color: #f2f2f2;height: 39px;line-height: 27px;">
+    <ion-row>
+      <ion-col col-11 style="text-align: center;"> {{UserCV}} </ion-col>
+      <ion-col col-1>
+        <ion-icon (click)="download()" name="md-download"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div style="margin-top: 10px;" *ngIf="RequestDetailsLastLog.Notes == null || ( (RequestDetailsLastLog.Trial < 3 || RequestDetailsLastLog.Trial ==null)  && RequestDetailsLastLog.ReqStatus == 'R')" >
+    <button ion-button full  (click)="Directactionforupgradebyadmin(upgrdeID,'A','Done by')" color="custom1">
+      {{"direct accept"|translate}}
+    </button>
+
+    <button  ion-button full  (click)="Directactionforupgradebyadmin(upgrdeID,'R','Refused by')" color="danger"  >
+        {{"direct refuse"|translate}}
+    </button>
+  </div>
+  
+  <div *ngIf="NOResult==false">
+    <!-- <div *ngIf="RequestDetailsLogs.length==0" style="text-align: center;">
+      {{"no languages"|translate}}
+    </div> -->
+
+  <div  *ngIf="RequestDetailsLogs.length!=0">
+    <!-- <div *ngFor="let RequestDetailsLog of RequestDetailsLogs"> -->
+        <ion-card style="position: relative;">
+            <ion-card-header *ngIf="RequestDetailsLastLog.ReqStatus!=null" style="background-color: #f2f2f2;    padding: 5px 16px;">
+                <!-- *ngIf="RequestDetailsLog.Trial>=1 && RequestDetailsLog.Trial!=null" -->
+                <p  style="margin:10px 0px">
+                  <span *ngIf="RequestDetailsLastLog.ReqStatus=='A'">
+                        {{"accepted"|translate}}
+                  </span>
+                  <span *ngIf="RequestDetailsLastLog.ReqStatus=='R'">
+                        {{"refused"|translate}}
+                  </span>
+                  <span *ngIf="RequestDetailsLastLog.ReqStatus=='P'">
+                      {{"pending"|translate}}
+                  </span>
+                </p>
+            </ion-card-header>
+
+        <ion-card-content style="padding: 10px;">
+
+            <!-- <button *ngIf=" RequestDetailsLastLog.Trial < 3  && RequestDetailsLastLog.ReqStatus == 'R' " ion-button full round (click)="languageTests( RequestDetailsLastLog.Fk_LangID, RequestDetailsLastLog.UpgReq_ID)" color="custom2">
+                {{"testform"|translate}}
+            </button> -->
+
+            <button *ngIf=" RequestDetailsLastLog.Notes == null || (RequestDetailsLastLog.Trial < 3  && RequestDetailsLastLog.ReqStatus == 'R')" ion-button full round (click)="languageTests( RequestDetailsLastLog.Fk_LangID, RequestDetailsLastLog.UpgReq_ID)" color="custom2">
+                {{"testform"|translate}}
+            </button>
+
+            <ion-row style="margin: 14px 0px;" *ngIf="RequestDetailsLastLog.UpgReqDetails_ID!=null  || (RequestDetailsLastLog.Trial < 3  && RequestDetailsLastLog.ReqStatus == 'R')">
+                <ion-col col-6>
+                  <button ion-button full round (click)="adminFinalDescion(RequestDetailsLastLog.UpgReqDetails_ID,true)" color="custom1">
+                          {{"accept"|translate}}
+                  </button>
+                </ion-col>
+                <ion-col col-6>
+                  <button ion-button full round (click)="adminFinalDescion(RequestDetailsLastLog.UpgReqDetails_ID,false)" color="danger" >
+                          {{"refuse"|translate}}
+                  </button>
+                </ion-col>
+            </ion-row> 
+<!-- 
+            <div style="border-bottom: 1px solid #bbb5b5;margin-top: 9px;font-size: 20px;" *ngIf="RequestDetailsLog.ReviewerComment!=null">
+                <h4> {{"Reviewer feedbak"|translate}} </h4>
+            </div> -->
+
+            <div  *ngIf="RequestDetailsLastLog.ReviewerComment!=null">
+<!-- 
+              <ion-row>
+                <ion-col col-2> {{"ID"|translate}}</ion-col>
+                <ion-col col-8> {{"Comment"|translate}}</ion-col>
+                <ion-col col-2 style="white-space: nowrap;"> {{"Status"|translate}}</ion-col>
+                <ion-col col-2 *ngIf="RequestDetailsLog.Trial!=null"> {{"Trial"|translate}}</ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-2> {{RequestDetailsLog.FK_Reviewer_ID}} </ion-col>
+                <ion-col col-8 style="white-space: nowrap;"> {{RequestDetailsLog.ReviewerComment}} </ion-col>
+                <ion-col col-3  *ngIf="RequestDetailsLog.ReviewerStatus">{{"accepted"|translate}} </ion-col>
+                <ion-col col-3  *ngIf="!RequestDetailsLog.ReviewerStatus">{{"refused"|translate}} </ion-col>
+                <ion-col col-1 *ngIf="RequestDetailsLog.Trial!=null" > {{RequestDetailsLog.Trial}} </ion-col>
+              </ion-row> -->
+
+
+              <ion-item>
+                <ion-avatar item-start>
+                  {{RequestDetailsLastLog.ReviewerName}}
+                </ion-avatar>
+                <h2>
+                   <span *ngIf="RequestDetailsLastLog.ReviewerStatus">   {{"accepted"|translate}} </span>
+                   <span *ngIf="!RequestDetailsLastLog.ReviewerStatus">  {{"refused"|translate}}  </span>
+                </h2>
+                <p> {{RequestDetailsLastLog.ReviewerComment}} 
+                  <span style="position: absolute;right: 0px;top: 2%;" *ngIf="RequestDetailsLastLog.Trial!=null" > 
+                    Trial : {{RequestDetailsLastLog.Trial}} 
+                  </span> 
+                </p>
+              </ion-item>
+
+            </div>
+
+        </ion-card-content>
+
+        </ion-card>
+    </div>
+  </div>
+
+<!-- </div> -->
+
+<div *ngIf="NOResult==true" style="text-align: center;">
+      {{UpgReqResult}}
+</div>
+
+
+
+</ion-content>

@@ -1,0 +1,58 @@
+page-upgrade-requests {
+  .toggle-ios.toggle-checked .toggle-icon {
+    background-color: #FFAA45;
+}
+.item-md.item-block .item-inner {
+  padding-right: 0px !important;
+}
+.item-ios.item-block .item-inner {
+  padding-right: 0px !important;
+}
+
+.item-md{
+  padding-left: 0px !important;
+}
+
+.item-ios{
+  padding-left: 0px !important;
+}
+
+.select-text{
+  color: white !important;
+}
+.item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+  color: #ffffff;
+}
+.item-input .label-ios, .item-select .label-ios, .item-datetime .label-ios {
+  color: #ffffff;
+}
+.select-md .select-icon .select-icon-inner {
+  left: 0;
+  top: 50%;
+  margin-top: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 5px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  color: #fff;
+  pointer-events: none;
+
+}
+.select-ios .select-icon .select-icon-inner {
+  left: 0;
+  top: 50%;
+  margin-top: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 5px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  color: #fff;
+  pointer-events: none;
+
+
+}
+}

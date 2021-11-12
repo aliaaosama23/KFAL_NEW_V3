@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-row>
+    <ion-col col-1 (click)="dismiss()">
+      <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+      <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+    </ion-col>
+    <ion-col col-10 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+      {{RequestCode}}
+    </ion-col>
+    <ion-col col-1></ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content padding style="background-color:white ;  ">
+    <ion-list>
+      <ion-item *ngFor="let chat of rooms" no-lines>
+        <div class="chat-status" text-center *ngIf="chat.type==='join'||chat.type==='exit';else message">
+          <span class="chat-date">{{chat.sendDate | date:'short'}}</span>
+          <span class="chat-content-center">{{chat.message}}</span>
+        </div>
+        <ng-template #message>
+          <div class="chat-message" text-right *ngIf="chat.user === user && dir==false" style="    margin: 5px 27px;">
+            <div class="right-bubble">
+              <span class="msg-name" >me</span>
+              <span class="msg-date"  >{{chat.sendDate | date:'short'}}</span>
+              <p text-wrap  style="overflow-wrap: anywhere;" class="msg">{{chat.message}}</p>
+            </div>
+          </div>
+
+          <div  class="chat-message" text-right *ngIf="chat.user === user  && dir==true"  style="margin: 5px 0px;">
+            <div class="right-bubble">
+              <span class="msg-name" >me</span>
+              <span class="msg-date"  >{{chat.sendDate | date:'short'}}</span>
+              <p text-wrap style="overflow-wrap: anywhere;" class="msg">{{chat.message}}</p>
+            </div>
+          </div>
+
+          <div class="chat-message" text-left *ngIf="chat.user !== user" style="margin: 5px 0px;">
+            <div class="left-bubble"  *ngIf="dir==true">
+              <span class="msg-name" >{{chat.user}}</span>
+              <span class="msg-date" >{{chat.sendDate | date:'short'}}</span>
+              <p text-wrap style="overflow-wrap: anywhere;" class="msg">{{chat.message}}</p>
+            </div>
+
+            <div class="left-bubble"  *ngIf="dir==false">
+
+              <span class="msg-date" >{{chat.sendDate | date:'short'}}</span>
+              <span class="msg-name" >{{chat.user}}</span>
+              <p text-wrap style="overflow-wrap: anywhere;" class="msg">{{chat.message}}</p>
+            </div>
+          </div>
+
+
+        </ng-template>
+
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <ion-grid>
+
+      <ion-row *ngIf="plat=='android'">
+        <ion-col col-11 >
+          <ion-input  type="text" placeholder="Message" [(ngModel)]="data.message"   name="message" style="text-align: right;border: 1px solid lightgray;"></ion-input>
+        </ion-col>
+        <ion-col col-1 >
+            <ion-icon  *ngIf="dir==true"  name="md-send" (click)="sendMessage()" style="transform: rotate(180deg);padding: 10px;color: green;"></ion-icon>
+            <ion-icon  *ngIf="dir==false"  name="md-send" (click)="sendMessage()" style="padding: 10px;color: green;"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="plat=='ios'">
+        <ion-col col-11 >
+          <ion-input  type="text" placeholder="Message"  [(ngModel)]="data.message"   name="message" style="text-align: right"></ion-input>
+        </ion-col>
+        <ion-col col-1 style="margin:left">
+          <ion-icon  *ngIf="dir==true"  name="md-send" (click)="sendMessage()" style="transform: rotate(180deg);padding: 10px;color: green;"></ion-icon>
+          <ion-icon  *ngIf="dir==false"  name="md-send" (click)="sendMessage()" style="padding: 10px;color: green;"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-footer>

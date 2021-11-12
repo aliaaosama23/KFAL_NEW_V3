@@ -1,0 +1,87 @@
+<ion-header>
+  <div >
+      <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+            <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+            <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-10 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+           {{FK_UpgReq_ID}}
+        </ion-col>
+        <ion-col col-1></ion-col>
+      </ion-row>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <div style="background-color: #f2f2f2;height: 39px;line-height: 27px;margin-top: 10px;margin-bottom: 10px;">
+    <ion-row>
+      <ion-col col-4 style="text-align: center;"> {{lang}} </ion-col>
+      <ion-col col-8>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div style="background-color: #f2f2f2;height: 39px;line-height: 27px;margin-top: 10px;margin-bottom: 10px;">
+    <ion-row>
+      <ion-col col-11 style="text-align: center;color:#FFAA45 ;margin-top: 5px;"> {{TranslatedTestForm}} </ion-col>
+      <ion-col col-1>
+        <ion-icon style="color:#FFAA45;margin-top: 9px;"  name="ios-arrow-dropdown-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div style="width: 100%;">
+    <button ion-button full style="border-radius: 10px;" color="custom2" (click)="reviewerRecieve()">
+      <ion-row>
+        <ion-col col-11 style="margin-top: 10px;">
+          <span style="font-size: 18px;">
+            {{"test after translation"|translate}}
+          </span>
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon style="color: white;font-size: 29px;margin-top: 7px;" name="md-cloud-download"></ion-icon>
+        </ion-col>
+      </ion-row>
+      </button>
+  </div>
+
+  <div *ngIf="!giveFeedback">
+    <ion-row>
+      <ion-col col-6 >
+        <button ion-button  full  color="custom1" style="border-radius: 10px;" (click)="reviewerFeedback(true)"> {{"accept"|translate}} </button>
+      </ion-col>
+      <ion-col col-6 >
+        <button ion-button  full color="custom1" style="border-radius: 10px;"(click)="reviewerFeedback(false)"> {{"refuse"|translate}} </button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="giveFeedback">
+
+    <div *ngIf="reviewStatus==true"  style="background-color: #f2f2f2;height: 39px;line-height: 27px;margin-top: 10px;margin-bottom: 10px;">
+      <button ion-button  full  color="custom1" style="border-radius: 10px;"  >
+        <span style="color: #fff;">  {{"accepted request"|translate}} </span>
+      </button>
+    </div>
+
+    <div *ngIf="reviewStatus==false"  style="background-color: #f2f2f2;height: 39px;line-height: 27px;margin-top: 10px;margin-bottom: 10px;">
+      <button ion-button  full  color="custom1" style="border-radius: 10px;"  >
+        <span style="color: #fff;">  {{"refused request"|translate}} </span>
+      </button>
+    </div>
+
+    <div  style="position: relative;">
+      <ion-textarea [placeholder]="placeholder" style="border-radius: 5px;background: #f2f2f2;" rows="7" type="text" [(ngModel)]="comment">
+      </ion-textarea>
+
+      <button ion-button  full  color="custom1" style="border-radius: 10px;position: absolute;width: 20%;left: 10px;bottom: 1px;" (click)="reviewerFinished()">
+        <span style="color: #fff;">  {{"send"|translate}} </span>
+      </button>
+
+    </div>
+  </div>
+
+
+</ion-content>

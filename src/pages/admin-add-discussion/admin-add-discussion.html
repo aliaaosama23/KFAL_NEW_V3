@@ -1,0 +1,73 @@
+<ion-header >
+  <ion-navbar  hideBackButton style="background: unset !important;">
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+         <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+         <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{ "create new discussion"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1 >
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+ <!--  <ion-range min="10" max="100" [(ngModel)]="saturation" color="secondary" pin="true">
+    <ion-label range-left>10</ion-label>
+    <ion-label range-right>100</ion-label>
+  </ion-range> -->
+
+<div id="form_of_new_discussion">
+
+  <ion-item>
+    <ion-input  [(ngModel)]="TopicName" type="text" placeholder='{{"TopicName"|translate}}'></ion-input>
+  </ion-item>
+  <ion-item>
+
+    <ion-textarea style="border-bottom:  1.5px solid #9c9c9c !important;" [(ngModel)]="TopicContent" rows='5' type="text" placeholder='{{"TopicContent"|translate}}'></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>   {{"general_feild"|translate}}</ion-label>
+    <ion-select (ionChange)="select_general_feild()" [(ngModel)]="GeneralFeild"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+      <ion-option  *ngFor="let feild of general_feilds" [value]="feild.ID">{{feild.SpecializationName}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+<ion-item>
+    <ion-label>    {{"specific_feild"|translate}}</ion-label>
+    <ion-select [(ngModel)]="SpecificFeild"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+      <ion-option  *ngFor="let feild of specific_feilds" [value]="feild.ID">
+        {{feild.SpecializationName}}
+      </ion-option>
+    </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-label>   {{"lang"|translate}}</ion-label>
+  <ion-select  [(ngModel)]="language"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'>
+    <ion-option  *ngFor="let lang of Languages" [value]="lang.Lang_ID">
+        <span *ngIf="lang.ID==1">  {{lang._Lang_NameAr}} </span>
+        <span *ngIf="lang.ID!=1">  {{lang._Lan_Name_En}} </span>
+    </ion-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-input  [(ngModel)]="age" type="number" placeholder='{{"age"|translate}}'></ion-input>
+</ion-item>
+
+</div>
+
+</ion-content>
+<ion-footer>
+  <div style="margin:6%;text-align: center;">
+      <button (click)="publishDiscussion()" ion-button color="custom2" full style="height: 48px;border-radius: 10px;">
+         <span style=" font-size: 16px;">  {{ "pusblish"|translate}}</span>
+      </button>
+  </div>
+</ion-footer>

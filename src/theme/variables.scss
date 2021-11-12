@@ -1,0 +1,24 @@
+$font-path: "../assets/fonts";
+$app-direction: ltr;
+@import "ionic.globals";
+$colors: (
+  primary:    #214952,
+  secondary:  #FFAA45,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  custom1:#214952,
+  custom2:#FFAA45, // default color
+  custom3:#F2F2F2,
+  custom4:#07133c,
+  custom5:#b3afab
+);
+
+// 3C5B4C   for male
+// DDCBE3   for female
+// 07133C   for admin
+// 000000   for reviewer
+//204A53    for default
+@import "ionic.theme.default";
+@import "ionic.ionicons";
+;

@@ -1,0 +1,152 @@
+<ion-header >
+  <div>
+    <ion-row style="padding-top: 13px;padding-right: 11px;padding-left: 11px;">
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+       </ion-col>
+      <ion-col col-11 style="text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+        {{"allorders"|translate}}
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+<ion-content padding>
+
+ <ion-row>
+    <ion-col col-6 *ngFor="let item of chartMap" style="padding: 0px;">
+      <ion-card style="padding: 0px;" (click)="orders(item.orderType,item.orderList)">
+        <ion-card-header style="text-align: center;">
+          <p  style="margin: 0px;font-size: 15px;color: #FFAA45;"> {{item.title|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="padding:5px 17px;">
+          <circle-progress
+          [percent]="item.percent"
+          [radius]="100"
+          [outerStrokeWidth]="16"
+          [outerStrokeColor]="'#FFAA45'" 
+          [innerStrokeWidth]="8"
+          [innerStrokeColor]="'#FFAA45'"   
+
+          [animation]="true"
+          [animationDuration]="300"
+        ></circle-progress>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+<!-- 
+  <ion-row>
+    <ion-col col-6>
+      <ion-card (click)="orders('new',newOrders)">
+        <ion-card-header style="text-align: center;">
+           <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"new1"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+           <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+            {{newOrders.length}}
+           </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col col-6>
+      <ion-card (click)="orders('current',currentOrders)">
+        <ion-card-header style="text-align: center;">
+          <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"current1"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+          <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+             {{currentOrders.length}}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- <ion-row>
+    <ion-col col-6>
+      <ion-card (click)="orders('wait',waitReviewOrders)">
+        <ion-card-header style="text-align: center;">
+           <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"wait"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+           <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+             {{waitReviewOrders.length}}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-card (click)="orders('inReview',inReviewOrders)">
+        <ion-card-header style="text-align: center;">
+           <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"inReview"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+           <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+             {{inReviewOrders.length}}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- <ion-row>
+    <ion-col col-6>
+      <ion-card (click)="orders('apology1',apologyOrders)">
+        <ion-card-header style="text-align: center;">
+          <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"apology"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+          <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+           {{apologyOrders.length}}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-card (click)="orders('back1',backedOrders)">
+        <ion-card-header style="text-align: center;">
+           <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"back"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+           <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+          {{backedOrders.length}}
+           </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- <ion-row>
+    <ion-col col-6>
+      <ion-card (click)="orders('completed1',closedOrders)">
+        <ion-card-header style="text-align: center;">
+          <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"completed"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+          <p style="line-height: 50px; margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+            {{closedOrders.length}}
+            </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col col-6>
+      <ion-card (click)="orders('cancel',canceledOrders)">
+        <ion-card-header style="text-align: center;">
+           <p  style="margin: 0px;font-size: 12px;color: #FFAA45;"> {{"cancel1"|translate}}</p>
+        </ion-card-header>
+        <ion-card-content style="text-align: center;">
+           <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+             {{canceledOrders.length}}
+           </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+  </ion-row> -->
+
+
+</ion-content>

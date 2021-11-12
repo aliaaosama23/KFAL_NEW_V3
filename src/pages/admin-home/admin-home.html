@@ -1,0 +1,242 @@
+<ion-header >
+    <div>
+      <ion-row style="padding-top: 13px;padding-right: 11px;padding-left: 11px;">
+        <ion-col col-1 (click)="toggleMenu()">
+          <img src="../../assets/imgs/menu.png">
+        </ion-col>
+        <ion-col col-11 style="text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"Menu.home"|translate}}
+        </ion-col>
+      </ion-row>
+    </div>
+</ion-header>
+
+<ion-content style="padding:6px">
+
+  <!--
+<ion-content padding style="position: relative; background: url('../../assets/imgs/kfal2.svg');
+background-attachment: fixed;
+background-size: 100%; 
+background-repeat: no-repeat">
+<div>
+   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" spinner="none">
+ 
+  </ion-refresher>
+  
+  <ion-row  class="my_home_icons_before" *ngIf="beforePulling">
+    <ion-col col-1> </ion-col>
+    <ion-col col-2>
+      <button  id="btn1" ion-fab (click)="Home()" >
+        <ion-icon  name="home"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-2>
+      <button id="btn2" ion-fab  (click)="Orders()"   >
+        <ion-icon name="ios-paper-outline"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-2>
+      <button id="btn3" ion-fab  (click)="toggleMenu()">
+        <ion-icon  name="menu"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-2>
+      <button id="btn4" ion-fab (click)="openPage('NotificationsPage')" >
+        <ion-icon  name="notifications"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-2>
+      <button id="btn5" ion-fab  (click)="openPage('ClientProfilePage')">
+        <ion-icon  name="person"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-1> </ion-col>
+  </ion-row> 
+
+
+  <div *ngIf="!beforePulling" class="my_home_icons_after">
+    <ion-row>
+      <ion-col col-4>
+        <button id="btn4" ion-fab  (click)="Orders()">
+          <ion-icon  name="ios-paper-outline"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-4>
+        <button id="btn4" ion-fab   (click)="toggleMenu()">
+          <ion-icon  name="menu"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-4>
+        <button id="btn4" ion-fab  (click)="openPage('ClientProfilePage')" >
+          <ion-icon  name="person"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-5>
+        <button id="btn4" ion-fab  (click)="Home()" >
+          <ion-icon  name="home"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-5>
+        <button id="btn4" ion-fab (click)="openPage('NotificationsPage')" >
+          <ion-icon  name="notifications"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-1></ion-col>
+     
+    </ion-row>
+  </div>
+</div> -->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+ 
+  <div style="margin-top: 7%;">
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="adminDashboard()">
+          <ion-card-header style="text-align: center;">
+             <p  style="margin: 0px;font-size: 16px;color: #FFAA45;"> {{"usersOrders"|translate}}</p>
+          </ion-card-header>
+          <ion-card-content style="text-align: center;">
+             <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+                {{allOrders.length}}
+             </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="users()">
+          <ion-card-header style="text-align: center;">
+            <p  style="margin: 0px;font-size: 16px;color: #FFAA45;"> {{"allusers"|translate}}</p>
+          </ion-card-header>
+          <ion-card-content style="text-align: center;">
+            <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+              {{allUsers.length}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="usersupgradeRequests()">
+          <ion-card-header style="text-align: center;">
+             <p  style="margin: 0px;font-size: 16px;color: #FFAA45;"> {{'upgradeRequests'|translate}}</p>
+          </ion-card-header>
+          <ion-card-content style="text-align: center;">
+             <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+               {{upgradeRequestsNo}}
+             </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="Complaints()">
+          <ion-card-header style="text-align: center;">
+            <p  style="margin: 0px;font-size: 16px;color: #FFAA45;"> {{'Complaints'|translate}}</p>
+          </ion-card-header>
+          <ion-card-content style="text-align: center;">
+            <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+              {{complaints}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row (click)="controlpanelpage()" >
+      <ion-col col-12>
+        <ion-card >
+          <ion-card-header style="text-align: center;margin: -9px;">
+            <ion-row>
+              <ion-col col-4>
+                <p  style="margin: 0px;font-size: 16px;color: #FFAA45;"> {{'Control Panel'|translate}}</p>
+              </ion-col>
+              <ion-col col-6></ion-col>
+              <ion-col col-2 *ngIf="dir==false">
+                <ion-icon style="color: #ffab47;font-size: 28px;" name="md-arrow-forward"></ion-icon>
+              </ion-col>
+              <ion-col col-2 *ngIf="dir==true">
+                <ion-icon style="color: #ffab47;font-size: 28px;" name="md-arrow-back"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-card style="border-radius: 10px;margin: 4px 10px 10px" id="translators">
+      <ion-card-header style="background-color: #ffab47;color: white;    padding: 4px;">
+        <ion-row>
+          <ion-col col-6> {{"translatorsOrder"|translate}}  </ion-col>
+          <ion-col col-4></ion-col>
+          <ion-col col-1 (click)="showT(true)" >
+              <ion-icon name="md-arrow-up" style="color: white;"></ion-icon>
+          </ion-col>
+          <ion-col col-1 (click)="showT(false)" >
+            <ion-icon name="md-arrow-down" style="color: white;"></ion-icon>
+        </ion-col>
+        </ion-row>
+      </ion-card-header>
+
+      <ion-card-content *ngIf="Translators.length==0" >
+           <div style="margin-top: 4%;color:black;font-size: 20px;text-align: center;">
+               <p> {{'no rates now'|translate}} </p>
+           </div>
+      </ion-card-content>
+
+      <ion-card-content *ngIf="Translators.length!=0">
+        <ion-list >
+          <ion-item (click)="showProviderProfile(provider.FK_Ttranslator_ID)" *ngFor="let provider of Translators">
+             <ion-row>
+               <ion-col col-6>{{provider.User_Full_Name}}</ion-col>
+               <ion-col col-5></ion-col>
+               <ion-col col-1>{{provider.rating}}</ion-col>
+             </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="border-radius: 10px;margin: 4px 10px 10px" id="reviewers">
+      <ion-card-header style="background-color: #ffab47;color: white;    padding: 4px;">
+        <ion-row>
+          <ion-col col-6> {{"reviewersOrder"|translate}}  </ion-col>
+          <ion-col col-4></ion-col>
+          <ion-col col-1 (click)="showR(true)" >
+              <ion-icon name="md-arrow-up" style="color: white;"></ion-icon>
+          </ion-col>
+          <ion-col col-1 (click)="showR(false)" >
+            <ion-icon name="md-arrow-down" style="color: white;"></ion-icon>
+        </ion-col>
+        </ion-row>
+      </ion-card-header>
+
+      <ion-card-content *ngIf="Reviewers.length==0" >
+        <div style="margin-top: 4%;color:black;font-size: 20px;text-align: center;">
+            <p> {{'no rates now'|translate}} </p>
+        </div>
+      </ion-card-content>
+      <ion-card-content *ngIf="Reviewers.length!=0">
+        <ion-list >
+          <ion-item (click)="showProviderProfile(provider.FK_Reviewer_ID)" *ngFor="let provider of Reviewers">
+             <ion-row>
+               <ion-col col-6>{{provider.User_Full_Name}}</ion-col>
+               <ion-col col-5></ion-col>
+               <ion-col col-1>{{provider.rating}}</ion-col>
+             </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

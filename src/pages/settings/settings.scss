@@ -1,0 +1,44 @@
+page-settings {
+.toggle-ios.toggle-checked .toggle-icon {
+    background-color: #FFAA45;
+}
+.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: unset !important
+}
+//---------------md
+ .list-header-md {
+    margin-bottom: 0px !important;
+}
+.item-md{
+    padding-left: 0px !important;
+    background-color:unset !important
+}
+.list-header-md {
+    padding-left: 16px;
+    margin-bottom: 13px;
+    min-height: 4.5rem;
+    border-top: unset;
+    font-size: 1.4rem;
+    color: #757575;
+}
+
+//-----------------ios
+.list-header-ios {
+    margin-bottom: 0px !important;
+}
+.item-ios{
+    padding-left: 0px !important;
+    background-color:unset !important
+}
+.list-header-ios {
+    padding-left: 16px;
+    margin-bottom: 13px;
+    min-height: 4.5rem;
+    border-top: unset;
+    font-size: 1.4rem;
+    color: #757575;
+}
+.list-ios {
+    margin: 41px 0 16px;
+}
+}

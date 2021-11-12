@@ -1,0 +1,39 @@
+
+<ion-header>
+  <div style="background-color: #fff;">
+    <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col *ngIf="IsEditing" col-11 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"edit deadline"|translate}}
+        </ion-col>
+        <ion-col *ngIf="!IsEditing" col-11 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{"create deadline"|translate}}
+        </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label floating> {{ "Hour period"|translate}} </ion-label>
+    <ion-input type="number" [(ngModel)]="_Hour" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating> {{"price"|translate}} </ion-label>
+    <ion-input type="text" [(ngModel)]="_Price" ></ion-input>
+  </ion-item>
+
+
+  <button *ngIf="!IsEditing" ion-button full  round color="custom1" style="border-radius: 10px;" (click)="AddDeadline()">
+     <h4 style="color:white;margin-top: 0.7rem;"> {{"create"|translate}} </h4>
+  </button>
+
+  <button *ngIf="IsEditing" ion-button full  round color="custom1" style="border-radius: 10px;" (click)="EditDeadline()">
+    <h4 style="color:white;margin-top: 0.7rem;"> {{"edit"|translate}} </h4>
+ </button>
+</ion-content>

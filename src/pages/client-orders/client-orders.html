@@ -1,0 +1,72 @@
+<ion-header>
+    <div style="background-color: #F2F2F2;height: 110px;">
+        <ion-row style="padding-top: 13px;padding-right: 11px;margin: 0px 16px;">
+          <ion-col col-1 (click)="dismiss()">
+            <ion-icon *ngIf="dir==true"  style="font-size: 40px;" name="ios-arrow-round-forward-outline"></ion-icon>
+            <ion-icon *ngIf="dir==false"  style="font-size: 40px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+          </ion-col>
+          <ion-col col-11 style="text-align: center;color: #214952;font-size: 15.61px;    margin-top: 2px;">
+            {{"Menu.requests"|translate}}
+          </ion-col>
+        </ion-row>
+    </div>
+
+    <div style="margin-top: -14px;margin-left: 30px; margin-right: 30px;">
+      <ion-row style="    background-color: #f2f2f2;border-radius: 0px 0px 40px 41px;">
+          <ion-segment  [(ngModel)]="orderType" color="secondary">
+              <ion-segment-button value="new">
+                {{"new"|translate}}
+              </ion-segment-button>
+              <ion-segment-button value="current">
+                  {{"current"|translate}}
+              </ion-segment-button>
+              <ion-segment-button value="received">
+                  {{ "received"|translate}}
+                </ion-segment-button>
+          </ion-segment>
+      </ion-row>
+    </div>
+</ion-header>
+
+<ion-content>
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div [ngSwitch]="orderType" style="margin-top:4%">
+        <div *ngSwitchCase="'new'" style="    margin: 0 5%;">
+            <div *ngIf="new_requests.length==0" style="margin-top: 50%;text-align: center;font-size: 18px; color:#3B5E66 ">
+                {{"no new requests"|translate}}
+            </div>
+            <request userType="client"  requestType= "new" [requestDetails]="request" *ngFor="let request of new_requests" ></request>
+        </div>
+
+        <div *ngSwitchCase="'current'" style="    margin: 0 5%;">
+            <div *ngIf="current_requests.length==0" style="margin-top: 50%;text-align: center;font-size: 18px; color:#3B5E66 ">
+                {{"no current requests"|translate}}
+            </div>
+            <request  userType="client"  requestType= "current" [requestDetails]="request" *ngFor="let request of current_requests" ></request>
+        </div>
+
+        <div *ngSwitchCase="'received'" style="    margin: 0 5%;">
+            <div *ngIf="received_requests.length==0" style="margin-top: 50%;text-align: center;font-size: 18px; color:#3B5E66 ">
+              {{"no completed requests"|translate}}
+            </div>
+            <request userType="client"   requestType= "received" [requestDetails]="request" *ngFor="let request of received_requests" ></request>
+        </div>
+    </div>
+
+    <ion-fab *ngIf=" platform.isRTL"  left bottom  >
+      <button ion-fab color="custom2" (click)="addOrder()">
+        <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab *ngIf=" !platform.isRTL"  right bottom  >
+      <button ion-fab color="custom2" (click)="addOrder()">
+        <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+      </button>
+    </ion-fab>
+</ion-content>

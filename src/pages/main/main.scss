@@ -1,0 +1,35 @@
+page-main {
+    
+    .swiper-container-android .swiper-slide, .swiper-wrapper {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .swiper-pagination-bullet-active {
+        background: #ffab47;
+        opacity: 1;
+    }
+
+    .swiper-container {
+        padding: 0;
+        position: relative;
+        z-index: 1;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+       
+        margin-top: 22%;
+    }
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+        left: 0;
+        bottom: 30px;
+        width: 100%;
+    }
+    ion-slides {
+        display: block;
+        width: 100%;
+        height: 75%;
+    }
+}

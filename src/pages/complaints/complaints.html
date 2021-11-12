@@ -1,0 +1,51 @@
+<ion-header style="background-color: white;" >
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{ "Complaints"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+
+  <div *ngIf="!admin">
+    <ion-textarea  style="border: 1px solid gray;background-color:#fff; border-radius: 10px;" placeholder='{{ "write"|translate}}' rows="5" [(ngModel)]="complaintMessage"></ion-textarea>
+
+    <button [disabled]="complaintMessage==''" (click)="sendComplaint()"  ion-button full color="custom2" style="margin-top: 6%;height: 48px;border-radius: 15px;font-size: 17px;">
+      {{"send"|translate}}
+    </button>
+  </div>
+
+
+  <div id="allcomplaints" *ngIf="admin">
+      <div *ngIf="allcomplains.length==0" style="margin-top: 30%;text-align: center;font-size: 23px; color:#3B5E66 ">
+        {{"no complains"|translate}}
+      </div>
+      <div *ngIf="allcomplains.length!=0">
+          <ion-row *ngFor="let complain of allcomplains"  style="    margin-bottom: 6px;background-color: #F2F2F2;padding: 6px;border-radius: 5px;">
+            <ion-col col-2 style="background-color: #214952;color: #FFAA45;white-space: normal;border-radius: 5px;font-size: 15px;text-align: center;">
+              <div style="margin-bottom: 9px;">  {{complain.day}}  </div>
+              <div>  {{complain.month}} </div>
+            </ion-col>
+            <ion-col col-6>
+              <div style=" margin-top: 10%;   padding: 0px 13px; margin-bottom: 12px;color: #3B5E66;  font-size: 18px;line-height: 15px;">
+                  {{complain.CompalinText}}
+              </div>
+            </ion-col>
+            <ion-col col-4 style="white-space: nowrap;" (click)="open_client_profile(complain.FK_UserID)">
+              <div style="margin-bottom: 9px;text-align: center;"> {{"client"|translate}}  </div>
+              <div style="text-align: center;    overflow: hidden;">  {{complain.UserName}} </div>
+            </ion-col>
+          </ion-row>
+      </div>
+  </div>
+
+</ion-content>

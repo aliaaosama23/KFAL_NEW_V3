@@ -1,0 +1,79 @@
+<ion-header >
+  <div>
+      <ion-row style="padding-top: 13px;padding-right: 11px;padding-left: 11px;">
+        <ion-col col-1 (click)="toggleMenu()">
+          <img src="../../assets/imgs/menu.png">
+        </ion-col>
+        <ion-col col-11 style="text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+          {{"orders1"|translate}}
+        </ion-col>
+      </ion-row>
+  </div>
+</ion-header>
+<ion-content padding>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <div *ngIf="nodata==false || newOrders.length!=0 " >
+        <ion-row style="position: relative;">
+          <ion-col col-6 *ngFor="let deadline  of deadlines">
+            <p *ngIf="dir==false" style="text-align: center;top:-10px;left: 0px; position: absolute;width: 30px;height:30px;border-radius: 50%;background-color:#FFAA45;color:white;">
+              <span style="text-align: center;line-height: 30px;" >
+               {{deadline.count}}
+              </span>
+            </p>
+            <p *ngIf="dir==true" style="text-align: center;top:-10px;right: 0px; position: absolute;width: 30px;height:30px;border-radius: 50%;background-color:#FFAA45;color:white;">
+              <span style="text-align: center;line-height: 30px;" >
+                {{deadline.count}}
+              </span>
+            </p>
+            <ion-card  (click)="filterBy(deadline.Houre)"  >
+              <ion-card-header style="text-align: center;">
+                 <p  style="margin: 0px;font-size: 13px;color: #FFAA45;"> {{'orders with'|translate}} </p>
+              </ion-card-header>
+              <ion-card-content style="text-align: center;">
+                 <p style="line-height: 50px;margin: 0px;font-size: 23px;font-weight: 600;border-radius: 50%;text-align: center;color: #b9b4b4;">
+                  {{deadline.Houre}} {{"hour"|translate}}
+                 </p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="nodata==true" style="text-align: center;font-size: 23px;  ">
+
+        <ion-card>
+          <ion-card-header style="background:#3B5E66">
+            <p style="color: white;"> {{"new requests"|translate}} </p>
+          </ion-card-header>
+
+          <ion-card-content style="margin-top: 4%;">
+            {{"no new requests"|translate}}
+          </ion-card-content>
+        </ion-card>
+
+      </div>
+
+      <div style="margin-top: 10px;" id="upgradeRequestTranslatedTests" *ngIf="providerType=='Proofreader'">
+          <ion-card >
+            <ion-card-header style="background: #3B5E66">
+              <p style="color: white;"> {{"upgradeRequestTranslatedTests"|translate}} </p>
+            </ion-card-header>
+            <ion-card-content>
+              <div *ngFor="let test of upgradeTranslatedTests">
+                <ion-row *ngIf="test.TranslatedTestForm!=null" >
+                  <ion-col col-11>
+                    <p style="display: inline-block; line-height: 50px;margin: 0px;color:#3B5E66">
+                      {{test.TranslatedTestForm}}
+                    </p>
+                  </ion-col>
+                  <ion-col col-1>
+                  <ion-icon (click)="translatedTests(test.UpgReqDetails_ID,test.TranslatedTestForm,test.FK_UpgReq_ID,test.Lang_Name_Ar,test.Lan_Name_En)" style="margin-top: 11px;color: #ffab47;font-size: 28px;" name="md-arrow-forward"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-card-content>
+          </ion-card>
+      </div>
+</ion-content>

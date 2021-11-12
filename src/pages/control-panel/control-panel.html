@@ -1,0 +1,38 @@
+
+<ion-header>
+  <div style="background-color: #fff;">
+    <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-11 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 15.61px;line-height: 16px;">
+          {{'Control Panel'|translate}}
+        </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-row *ngFor="let control of ControlPanelItems">
+    <ion-col col-12>
+      <ion-card (click)="GoControlPage(control.page)" >
+        <ion-card-header style="text-align: center;margin: -9px;">
+          <ion-row>
+            <ion-col col-4>
+              <p  style="margin: 0px;font-size: 16px;color: #FFAA45;"> {{control.control|translate}}</p>
+            </ion-col>
+            <ion-col col-6></ion-col>
+            <ion-col col-2>
+              <ion-icon *ngIf="dir==false"  style="color: #ffab47;font-size: 28px;" name="md-arrow-forward"></ion-icon>
+              <ion-icon *ngIf="dir==true" style="color: #ffab47;font-size: 28px;" name="md-arrow-back"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header>
+  <div>
+      <ion-row style="padding-top: 13px;padding-right: 11px;">
+          <ion-col col-1 (click)="dismiss()">
+              <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+              <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-11 style="margin-top: 10px; text-align: center;height: 16px;width: 54px;color: #07133c;font-size: 18px;line-height: 16px;">
+          {{"allusers"|translate}}
+          </ion-col>
+      </ion-row>
+  </div>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list style="margin-bottom: 22%;">
+    <ion-item  (click)="showProfile(user.User_ID)" *ngFor="let user of allusers" style="border-radius: 5px; border: 1px solid #42474e7a;background-color: #F2F2F2;margin-bottom: 10px;padding: 5px;">
+        <ion-row >
+            <ion-col col-6 style="font-size: 20px;">
+              {{user.User_Full_Name}}
+            </ion-col>
+            <ion-col col-3></ion-col>
+            <ion-col col-3 style="text-align: center;">
+              {{user.Type}}
+            </ion-col>
+        </ion-row>
+        <ion-row style="height: 24px;">
+           {{user.User_Email}}
+        </ion-row>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab right bottom *ngIf="dir==false">
+    <button ion-fab color="custom2" (click)="addnewUser()">
+      <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab left bottom *ngIf="dir==true">
+    <button ion-fab color="custom2" (click)="addnewUser()">
+      <ion-icon style="color:#e2e2e2;font-size:30px" name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

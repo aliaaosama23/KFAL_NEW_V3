@@ -1,0 +1,68 @@
+<ion-header style="background-color: #F2F2F2;">
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-10 style="text-align: center;">
+          <ion-title >{{DiscussionName}}</ion-title>
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card style="background-color: #e8e7e7;">
+    <ion-card-header>
+    <h2>{{DiscussionName}}</h2>
+  </ion-card-header>
+  <ion-card-content>
+     <p>{{DiscussionTopic}}</p>
+  </ion-card-content>
+  </ion-card>
+
+
+  <ion-card style="background-color: #e8e7e7;">
+    <ion-card *ngFor="let log of allLogs">
+      <ion-card-header style="padding: 6px !important;">
+        <ion-row>
+          <ion-col col-6 style="font-size: 18px;">
+                 {{log.User_Full_Name}}
+          </ion-col>
+          <ion-col col-3></ion-col>
+          <ion-col col-1 style="font-size: 14px;">
+            {{log.date}}
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-card-content style="padding: 6px !important;">
+        <p>{{log.UserDiscussionDetails}}</p>
+        <ion-row>
+          <ion-col col-9></ion-col>
+          <ion-col col-3 style="white-space: nowrap;font-size: 12px;">
+            {{log.time}}
+          </ion-col>
+        </ion-row>
+
+      </ion-card-content>
+    </ion-card>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer style="padding: 6px;">
+    <ion-input style="border:1px solid #e8e7e7" placeholder='{{ "write"|translate}}'
+    [(ngModel)]="myLog" type="text"></ion-input>
+
+    <ion-row (click)="addLog()">
+      <ion-col col-10></ion-col>
+      <ion-col col-2 style="text-align: center;">
+        {{'publish'|translate}}
+      </ion-col>
+    </ion-row>
+
+</ion-footer>

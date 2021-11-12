@@ -1,0 +1,58 @@
+page-hometype {
+
+
+
+
+ .scroll-content {
+  background-image: url(assets/imgs/bg.png) no-repeat ;//no-repeat center center fixed; 
+  
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+}
+
+.fab-md {
+  color: #fff;
+//  background-color: #1f6870;
+}
+
+
+.fab-ios {
+  color: #fff;
+ // background-color: #1f6870;
+}
+}
+
+// button.fab.fab-md{
+//   width: 50px;
+//   height: 50px;
+// }
+
+// button.fab.fab-ios{
+//   width: 50px;
+//   height: 50px;
+// }
+.my_head{
+  transition: height 3s;
+}
+
+.my_head::-webkit-scrollbar //-moz-drag-over
+{
+  height: 100px;
+}
+
+.before{
+  top: 0px;
+}
+
+.after{
+  top: 260px;
+}
+
+.content_before{
+  margin-top: 0px;
+}
+
+.content_after{
+  margin-top: 260px;
+}

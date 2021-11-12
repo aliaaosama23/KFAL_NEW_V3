@@ -1,0 +1,24 @@
+page-client-profile-edit {
+    .item-md{
+        background-color: unset ;
+    }
+    .item-ios{
+        background-color: unset ;
+    }
+    .passwordIcon{
+        font-size:2rem !important;
+        position: relative !important;
+        top: 8px !important;
+        margin: 0 auto !important;
+     }
+
+     .item-md.item-block .item-inner {
+        padding-right: 0px;
+        border-bottom: 1px solid #dedede;
+    }
+
+    .item-ios.item-block .item-inner {
+        padding-right: 0px;
+        border-bottom: 1px solid #dedede;
+    }
+}

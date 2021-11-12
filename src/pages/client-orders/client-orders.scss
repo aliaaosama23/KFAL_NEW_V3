@@ -1,0 +1,39 @@
+page-client-orders {
+    ion-segment-button.segment-button.segment-activated{
+        color:#3B5E66
+    }
+    //--------------------md
+    .segment-md .segment-button{
+        border-bottom-style: unset;
+    }
+    .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated {
+         border-color: unset;
+        opacity: 1;
+        font-size: 16px;
+    }
+    .segment-md-secondary .segment-button {
+        color: #FFAA45;
+    }
+    .segment-md-secondary .segment-button.activated, .segment-md-secondary .segment-button.segment-activated {
+        border-color: unset;
+        color: #3B5E66;
+        opacity: 1;
+    }
+//--------------------ios
+    .segment-ios .segment-button{
+        border-bottom-style: unset;
+    }
+    .segment-ios .segment-button.activated, .segment-ios .segment-button.segment-activated {
+         border-color: unset;
+        opacity: 1;
+        font-size: 16px;
+    }
+    .segment-ios-secondary .segment-button {
+        color: #FFAA45;
+    }
+    .segment-ios-secondary .segment-button.activated, .segment-ios-secondary .segment-button.segment-activated {
+        border-color: unset;
+        color: #3B5E66;
+        opacity: 1;
+    }
+}

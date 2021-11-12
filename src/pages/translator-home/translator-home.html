@@ -1,0 +1,96 @@
+
+<ion-header style="background-color: #F2F2F2">
+  <div >
+      <ion-row style="padding-top: 13px;padding-right: 11px;padding-left: 11px;">
+        <ion-col col-1 (click)="toggleMenu()">
+          <img src="../../assets/imgs/menu.png">
+        </ion-col>
+        <ion-col col-11 style="text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+          {{"orders"|translate}}
+        </ion-col>
+      </ion-row>
+  </div>
+  </ion-header>
+
+<ion-content padding style="background-color: #F2F2F2">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+  <div *ngIf="providerType=='translator'">
+
+    <ion-row (click)="goOrders('TranslatorOrdersPage','new', RequestsForTranslate)"   style="background-color: #FFAA45; margin-top: 14%;border-radius: 15px;font-size: 17px;">
+      <ion-col col-2 *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsForTranslate.length}} </ion-col>
+      <ion-col col-2 *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 15px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsForTranslate.length}} </ion-col>
+      <ion-col col-10 style="text-align: center;">
+            <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"new"|translate}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row (click)="goOrders('TranslatorOrdersPage','current',Requestscurrent)"   style="background-color: #FFAA45; margin-top: 5%;border-radius: 15px;font-size: 17px;">
+      <ion-col col-2 *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{Requestscurrent.length}} </ion-col>
+      <ion-col col-2 *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 15px;white-space: nowrap;background-color: #f3dbbf;"> {{Requestscurrent.length}} </ion-col>
+      <ion-col col-10 style="text-align: center;">
+            <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"current"|translate}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row (click)="goOrders('TranslatorOrdersPage','wait',RequestsForReviewer)"   style="background-color: #FFAA45; margin-top: 5%;border-radius: 15px;font-size: 17px;">
+      <ion-col col-2  *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{ RequestsForReviewer.length}} </ion-col>
+      <ion-col col-2  *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 5px;white-space: nowrap;background-color: #f3dbbf;"> {{ RequestsForReviewer.length}} </ion-col>
+      <ion-col col-10 style="text-align: center;">
+            <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"wait"|translate}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row (click)="goOrders('TranslatorOrdersPage','apology',RequestsRollBackFromTranslator)"   style="background-color: #FFAA45; margin-top: 5%;border-radius: 15px;font-size: 17px;">
+      <ion-col col-2  *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsRollBackFromTranslator.length}} </ion-col>
+      <ion-col col-2  *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 5px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsRollBackFromTranslator.length}} </ion-col>
+      <ion-col col-10 style="text-align: center;">
+            <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"apology"|translate}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row (click)="goOrders('TranslatorOrdersPage','back',RequestsRollBackFromReviewer)"   style="background-color: #FFAA45; margin-top: 5%;border-radius: 15px;font-size: 17px;">
+      <ion-col col-2  *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsRollBackFromReviewer.length}} </ion-col>
+      <ion-col col-2  *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 5px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsRollBackFromReviewer.length}} </ion-col>
+      <ion-col col-10 style="text-align: center;">
+            <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"back"|translate}}</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row (click)="goOrders('TranslatorOrdersPage','completed',RequestsCompletedForTranslator)"   style="background-color: #FFAA45; margin-top: 5%;border-radius: 15px;font-size: 17px;">
+      <ion-col col-2  *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsCompletedForTranslator.length}} </ion-col>
+      <ion-col col-2  *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 5px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsCompletedForTranslator.length}} </ion-col>
+      <ion-col col-10 style="text-align: center;">
+            <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"completed"|translate}}</h2>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="providerType=='Proofreader'">
+      <ion-row (click)="goOrders('TranslatorOrdersPage','new', RequestsNewForReviewer)"   style="background-color: #FFAA45; margin-top: 14%;border-radius: 15px;font-size: 17px;">
+          <ion-col col-2 *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsNewForReviewer.length}} </ion-col>
+          <ion-col col-2 *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 15px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsNewForReviewer.length}} </ion-col>
+          <ion-col col-10 style="text-align: center;">
+                <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"new"|translate}}</h2>
+          </ion-col>
+        </ion-row>
+
+        <ion-row (click)="goOrders('TranslatorOrdersPage','current',RequestsCurrentForReviewer)"   style="background-color: #FFAA45; margin-top: 5%;border-radius: 15px;font-size: 17px;">
+          <ion-col col-2 *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsCurrentForReviewer.length}} </ion-col>
+          <ion-col col-2 *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 15px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsCurrentForReviewer.length}} </ion-col>
+          <ion-col col-10 style="text-align: center;">
+                <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"current"|translate}}</h2>
+          </ion-col>
+        </ion-row>
+
+        <ion-row (click)="goOrders('TranslatorOrdersPage','backfromuser',RequestsBackFromUser)"   style="background-color: #FFAA45; margin-top: 5%;border-radius: 15px;font-size: 17px;">
+            <ion-col col-2  *ngIf="dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 35px 15px 15px 35px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsBackFromUser.length}} </ion-col>
+            <ion-col col-2  *ngIf="!dir" style="color: #ffaa45;font-size: 19.61px;font-weight: 700;line-height: 49px;text-align: center;border-radius: 15px 35px 35px 5px;white-space: nowrap;background-color: #f3dbbf;"> {{RequestsBackFromUser.length}} </ion-col>
+            <ion-col col-10 style="text-align: center;">
+                  <h2 style="margin-top: 13px;font-size: 19px;margin-top: 13px;color: white;"> {{"backfromuser"|translate}}</h2>
+            </ion-col>
+        </ion-row>
+  </div>
+
+</ion-content>

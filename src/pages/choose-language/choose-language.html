@@ -1,0 +1,23 @@
+
+<ion-header style="background-color: #F2F2F2;">
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-11>
+          <ion-title>{{name}}</ion-title>
+      </ion-col>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon  style="color:black" name="md-close"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #F2F2F2;">
+    <ion-list radio-group [(ngModel)]="chosenlanguage" mode="md" >
+        <ion-item *ngFor="let language of languages" >
+          <ion-label *ngIf="dir==true">{{language._Lang_NameAr}}</ion-label>
+          <ion-label *ngIf="dir==false">{{language._Lan_Name_En}}</ion-label>
+          <ion-radio  [value]="language.Lang_ID"></ion-radio>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,141 @@
+
+<ion-header>
+  <div style="background-color: #F2F2F2;height: 110px;">
+      <ion-row style="padding-top: 13px;padding-right: 11px;">
+        <ion-col col-1 (click)="dismiss()">
+          <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+          <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col col-10 style="margin-top: 9px;text-align: center;height: 16px;width: 54px;color: #214952;font-size: 15.61px;line-height: 16px;">
+           {{RequestCode}}
+        </ion-col>
+        <ion-col col-1>
+      </ion-col>
+      </ion-row>
+  </div>
+
+  <div style="margin-top: -28px;margin-left: 14px; margin-right: 14px;">
+    <ion-row style="background-color: #f2f2f2;border-radius: 0px 0px 40px 41px;">
+      <ion-col col-1></ion-col>
+      <ion-col col-4 style="text-align: center;">
+         <div>
+           <p style="margin-top: 3px;">
+              <span style="font-size: 21px;"> {{langFrom}}</span>
+           </p>
+         </div>
+      </ion-col>
+      <ion-col col-2 style="text-align: center;">
+        <ion-icon *ngIf="dir==false" style="color:#FFAA45;font-size: 31px;padding: 5px 1px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==true" style="color:#FFAA45;font-size: 31px;padding: 5px 1px;" name="ios-arrow-round-back-outline"></ion-icon>
+
+      </ion-col>
+      <ion-col col-4 style="text-align: center;font-size: 15px;">
+          <div>
+            <p style="margin-top: 3px;">
+               <span style="font-size: 21px;">{{ langTo}}</span>
+            </p>
+          </div>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+<ion-content padding>
+
+    <ion-row style="margin: 10px 0px;">
+      <ion-col col-6 style="white-space: nowrap; color: #214952;font-size: 16px;line-height: 15px;">
+          {{"deadline"|translate}}
+      </ion-col>
+      <ion-col col-6 style="color: #828282;font-size: 15px;line-height: 15px;text-align: center;">
+        {{request_data.FK_Request_Deadline_Hours}} {{"hour"|translate}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 10px 0px;">
+      <ion-col col-6 style="white-space: nowrap; color: #214952;font-size: 16px;line-height: 15px;">
+          {{"number_of_pages"|translate}}
+      </ion-col>
+      <ion-col col-6 style="color: #828282;font-size: 15px;line-height: 15px;text-align: center;">
+          {{request_data.Request_NumOfPages}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 10px 0px;">
+        <ion-col col-4 style="white-space: nowrap; color: #214952;font-size: 16px;line-height: 15px;">
+            {{ "notices"|translate}}
+        </ion-col>
+        <ion-col col-8></ion-col>
+    </ion-row>
+    <div style="padding:10px; font-size: 13px;  color: #214952;;box-sizing: border-box;border-radius: 10px;border: 1px solid #808080;">
+      {{request_data.Requst_Notes}}
+    </div>
+
+      <!-- download this file -->
+      <button *ngIf="RequestType=='new' || RequestType=='backfromuser'" ion-button (click)="filePreview()" full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+          <ion-row style="    width: 100%;">
+            <ion-col col-2>
+              <ion-icon style="color: white;    font-size: 35px;text-transform: none;" name="md-cloud-download"></ion-icon>
+            </ion-col>
+            <ion-col col-10 style="margin-top: 9px;text-transform: initial;overflow: hidden;">
+              {{FileName}}
+            </ion-col>
+          </ion-row>
+      </button>
+
+      <button (click)="receiveNewRequest()" *ngIf="RequestType=='new'" ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+          <span> {{"accept_receive"|translate}} </span>
+      </button>
+
+      <div *ngIf="RequestType=='current'" style="padding: 3px;">
+          <div   style="background-color:#FFAA45;border-radius:15px;margin-top: 10px;height: 48px;" class="fileUpload btn btn-primary">
+            <ion-row>
+              <ion-col col-1>
+                  <ion-icon style="color: white;font-size: 35px;" name="md-cloud-upload"></ion-icon>
+              </ion-col>
+              <ion-col col-11>
+                  <p style="text-align: center;margin-top: 6px;font-size: 16px;text-transform: none;color: white;text-transform: initial;"> {{FilleName}}</p>
+              </ion-col>
+            </ion-row>
+            <input  id="uploadBtn" type="file" class="upload" (change)="handleFileInput($event,$event.target.files)"/>
+          </div>
+      </div>
+
+      <button *ngIf="RequestType=='current' && ProviderType=='translator'" (click)="workCompleted()"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+        <span> {{"completeWork"|translate}} </span>
+      </button>
+
+      <ion-row *ngIf="RequestType=='current' && ProviderType=='Proofreader'">
+          <ion-col col-6>
+            <button  (click)="workCompleted()"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+              <span> {{"completeWork"|translate}} </span>
+            </button>
+          </ion-col>
+          <ion-col col-6>
+              <button (click)="reiewerbacktotranslator()"  ion-button full color="custom2" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+                  <span> {{"back to translator"|translate}} </span>
+              </button>
+          </ion-col>
+      </ion-row>
+
+      <button *ngIf="RequestType=='current' && ProviderType=='translator'" (click)="chatWithTranslator()"  ion-button full color="custom1" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+        <span> {{"interpreter_chat"|translate}} </span>
+      </button>
+
+      <button *ngIf="RequestType=='current' && ProviderType=='translator'" (click)="apology()" ion-button full color="danger" style="height: 48px;border-radius: 15px;font-size: 17px;margin: 8px 0px;">
+        <span> {{ "aplogyforcomplete"|translate}} </span>
+      </button>
+
+      <ion-row *ngIf="RequestType=='apology' && ProviderType=='translator'">
+          <ion-col col-4 style="font-size: 17px;color:#214952;text-align: center;">
+            {{"apologyReason"|translate}}
+          </ion-col>
+          <ion-col col-8 style="font-size: 17px;color:#214952;text-align: center;">
+             {{request_data.Request_Date}}
+          </ion-col>
+      </ion-row>
+
+      <div  *ngIf="RequestType=='apology' && ProviderType=='translator'" style="font-size: 17px;color:#214952">
+        {{reason}}
+      </div>
+
+</ion-content>

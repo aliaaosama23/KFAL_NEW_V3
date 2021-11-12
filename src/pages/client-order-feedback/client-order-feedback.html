@@ -1,0 +1,62 @@
+
+<ion-content padding style="padding-bottom: 0px;background-color: rgba(33, 73, 82, 0.87);height: 45%;margin-top: 41%;margin-right: 5%;width: 90%;margin-left: 5%;border-radius: 1em;">
+
+  <div>
+    <ion-row>
+      <ion-col col-11>
+        
+      </ion-col>
+      <ion-col col-1> 
+        <ion-icon  style="color:white" (click)="back()" name="md-close"> </ion-icon>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="type=='acceptReceivedRequest'">
+    <p *ngIf="dir==true" style="margin-top: 0px;margin-bottom: 0px;color: white;font-size: 18px;text-align: right;">  {{"rate now"|translate}}</p>
+    <p *ngIf="dir==false" style="margin-top: 0px;margin-bottom: 0px;color: white;font-size: 18px;text-align:left;">  {{"rate now"|translate}}</p>
+    
+    <ion-row>
+      <ion-col col-12 style="text-align: center;"> 
+         <ionic3-star-rating  (ratingChanged)="logRatingChange($event)" activeIcon = "ios-star" defaultIcon = "ios-star-outline" activeColor = "#e0ce47" defaultColor = "#f3d819" readonly="false" [(ngModel)]="rate">
+            </ionic3-star-rating>
+      </ion-col>
+    </ion-row>
+
+    <p *ngIf="dir==true" style="margin-bottom: 0px;color: white;font-size: 18px;text-align: right;margin-top: 0px;margin-bottom: 10px;">  {{"add comment"|translate}}</p>
+    <p *ngIf="dir==false" style="margin-bottom: 0px;color: white;font-size: 18px;text-align:left;margin-top: 0px;margin-bottom: 10px;">  {{"add comment"|translate}}</p>
+  
+    <ion-item style="background-color: white;">
+      <ion-input placeholder="{{'write'|translate}}" type="text" [(ngModel)]="comment"></ion-input>
+    </ion-item>
+   
+    <ion-row style="margin:10px 0px ;">
+      <ion-col col-4></ion-col>
+      <ion-col col-4>
+        <button ion-button full (click)="send()"  style="border-radius: 4px;background-color:white;color:#214952;">
+          {{"send"|translate}}
+        </button>
+      </ion-col>
+      <ion-col col-4></ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="type=='refuseReceivedRequest'">
+    <p *ngIf="dir==true" style="margin-bottom: 0px;color: white;font-size: 18px;text-align: right;margin-top: 40px;margin-bottom: 10px;">  {{"refuseReason"|translate}}</p>
+    <p *ngIf="dir==false" style="margin-bottom: 0px;color: white;font-size: 18px;text-align:left;margin-top: 40px;margin-bottom: 10px;">  {{"refuseReason"|translate}}</p>
+  
+    <ion-item style="background-color: white;">
+      <ion-input placeholder="{{'write'|translate}}" type="text" [(ngModel)]="refuseReason"></ion-input>
+    </ion-item>
+   
+    <ion-row style="margin:10px 0px ;">
+      <ion-col col-4></ion-col>
+      <ion-col col-4>
+        <button ion-button full (click)="send()"  style="border-radius: 4px;background-color:white;color:#214952;">
+          {{"send"|translate}}
+        </button>
+      </ion-col>
+      <ion-col col-4></ion-col>
+    </ion-row>
+  </div>
+</ion-content>

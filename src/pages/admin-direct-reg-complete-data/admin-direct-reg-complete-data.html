@@ -1,0 +1,53 @@
+<ion-header style="background-color: #FFFFFF;">
+  <ion-navbar  hideBackButton>
+    <ion-row>
+      <ion-col col-1 (click)="dismiss()">
+        <ion-icon *ngIf="dir==true"  style="font-size: 35px;" name="ios-arrow-round-forward-outline"></ion-icon>
+        <ion-icon *ngIf="dir==false"  style="font-size: 35px;" name="ios-arrow-round-back-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-10 style="text-align: center;    margin-top: 0px;">
+          <ion-title >{{ "complete data"|translate}}</ion-title>
+      </ion-col>
+      <ion-col col-1 >
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ 
+  
+  <ion-item style="margin: 5px 0px;">
+    <ion-label style="color:#FFAA45">{{ "Proficient_languages"|translate}}</ion-label>
+    <ion-select  multiple="true" [(ngModel)]="language_id"     okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'  >
+      <ion-option *ngFor="let language of languages" [value]="language.Lang_ID">
+         <span *ngIf="dir==false">  {{language._Lan_Name_En}} </span>
+         <span *ngIf="dir==true">  {{language._Lang_NameAr}} </span>
+      </ion-option>
+    </ion-select>
+</ion-item>
+
+<ion-item style="margin: 5px 0px;">
+    <ion-label style="color:#FFAA45">{{"general_feild"|translate}}</ion-label>
+    <ion-select (ionChange)="set_general_feild(general_feild_id)" [(ngModel)]="general_feild_id"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'  >
+      <ion-option *ngFor="let general_feild of general_feilds" [value]="general_feild.ID">
+        {{general_feild.SpecializationName}}
+      </ion-option>
+    </ion-select>
+</ion-item>
+
+<ion-item style="margin: 5px 0px;">
+    <ion-label style="color:#FFAA45">{{"specific_feild"|translate}}  </ion-label>
+    <ion-select  [(ngModel)]="specific_feild_id"  okText='{{"ok"|translate}}' cancelText='{{"cancel"|translate}}'  >
+      <ion-option *ngFor="let specific_feild of specific_feilds" [value]="specific_feild.ID">
+        {{specific_feild.SpecializationName}}
+      </ion-option>
+    </ion-select>
+</ion-item>
+
+<div style="margin:6%;text-align: center;">
+  <button (click)="CompleteData()" [disabled]="language_id.length<2" ion-button color="custom2" full style="height: 48px;border-radius: 10px;">
+     <span style=" font-size: 16px;">  {{ "complete data"|translate}}</span>
+  </button>
+</div>
+</ion-content>

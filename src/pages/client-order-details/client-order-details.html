@@ -1,0 +1,8 @@
+ <ion-header>
+  <request-header  (EditRequest)="edit($event)" UserType='client' [RequestData]="request_data"  [langFrom]="langFrom"    [langTo]="langTo"></request-header>
+</ion-header> 
+
+
+<ion-content padding >
+  <request-details [RequestData]="request_data" [GeneralFeild]="general_feild" [SpecificFeild]="specific_feild" [FileLevel]="file_level"></request-details>
+</ion-content>
